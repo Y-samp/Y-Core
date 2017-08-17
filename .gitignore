@@ -1,0 +1,20 @@
+*
+!.gitignore
+!gamemodes/**/*.inc
+!gamemodes/**/*.pwn
+!*/
+!scriptfiles/YSI/*
+scriptfiles/YSI/test_ini
+scriptfiles/YSI/test_users
+scriptfiles/YSI/tests
+scriptfiles/YSI/text/core.*
+scriptfiles/YSI/YDBG
+scriptfiles/YSI/_temp_ysi_live_file_.ysi
+scriptfiles/YSI/alltests_config.ini
+scriptfiles/YSI/new test.txt
+scriptfiles/YSI/new_mode.EN
+scriptfiles/YSI/new_mode.PL
+scriptfiles/YSI/new_mode_format.YSI
+
+
+gamemodes/test.pwn
