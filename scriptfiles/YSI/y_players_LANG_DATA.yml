@@ -1,5 +1,4 @@
 <YML>
-  <group name="all">
-    <entry name="NO_REGISTRATION" style="client" colour="X11_RED" />
+  <group name="auth">
   </group>
 </YML>
