@@ -12,6 +12,50 @@ hook OnPlayerConnect(playerid)
 		}
 	}
 
+	FetchPlayer(playerid);
+
+	return 1;
+}
+
+hook OnPlayerDisconnect(playerid, reason)
+{
+	stop inactivityKick[playerid];
+
+	return 1;
+}
+
+hook OnPlayerLogin(playerid)
+{
+	printf("Player %d logged in", playerid);
+}
+
+hook OnPlayerRegister(playerid)
+{
+	printf("Player %d registered", playerid);
+	FetchPlayer(playerid);
+}
+
+hook OnPlayerRequestClass(playerid, classid)
+{
+    SetSpawnInfo(playerid, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0);
+    TogglePlayerSpectating(playerid, true);
+
+    return 1;
+}
+
+timer KickOnInactivity[30000](playerid)
+{
+	Text_Send(playerid, $INACTIVE_KICK);
+	defer TimedKick(playerid);
+}
+
+timer LoginNextAttempt[500](playerid, attempt)
+{
+	ShowLoginDialog(playerid, attempt);
+}
+
+FetchPlayer(playerid)
+{
 	new query[40 + MAX_PLAYER_NAME + 1];
 	new name[MAX_PLAYER_NAME + 1];
 	GetPlayerName(playerid, name, sizeof name);
@@ -39,25 +83,6 @@ hook OnPlayerConnect(playerid)
 
 	mysql_tquery_inline(dbhandle, query, using inline PlayerFetched);
 
-	return 1;
-}
-
-hook OnPlayerDisconnect(playerid, reason)
-{
-	stop inactivityKick[playerid];
-
-	return 1;
-}
-
-timer KickOnInactivity[30000](playerid)
-{
-	Text_Send(playerid, $INACTIVE_KICK);
-	defer TimedKick(playerid);
-}
-
-timer LoginNextAttempt[500](playerid, attempt)
-{
-	ShowLoginDialog(playerid, attempt);
 }
 
 ShowLoginDialog(playerid, attempt = 1)
@@ -89,7 +114,7 @@ ShowLoginDialog(playerid, attempt = 1)
 		}
 
 		if (CheckUserPassword(playerid, inputtext)) {
-			ProcessLogin(playerid);
+			call OnPlayerLogin(playerid);
 		} else {
 			defer LoginNextAttempt[500](playerid, attempt + 1);
 		}
@@ -154,12 +179,6 @@ CheckUserPassword(playerid, const password[])
 	return false;
 }
 
-ProcessLogin(playerid)
-{
-	printf("Player %d Logged in!", playerid);
-	return 1;
-}
-
 CheckRegistrationPassword(playerid, password[])
 {
 	new len = strlen(password);
@@ -204,7 +223,7 @@ Register(playerid, const password[])
 
 	inline SavePlayer()
 	{
-		print("Player saved!");
+		call OnPlayerRegister(playerid);
 	}
 
 	mysql_tquery_inline(dbhandle, query, using inline SavePlayer);
@@ -214,5 +233,5 @@ Register(playerid, const password[])
 	
 GenerateSalt(dest[], size = sizeof dest)
 {
-	randomString(dest, size);
+	randomString(dest, size - 1);
 }

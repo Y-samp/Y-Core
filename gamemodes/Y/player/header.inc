@@ -34,3 +34,5 @@ enum e_ERROR_PASSWORD {
 #if !defined Y_USER_SALT_GENERATOR
 	#define Y_USER_SALT_GENERATOR SALT_WEAK
 #endif
+
+#define ALS_DO_PlayerRegister<%0> %0<PlayerRegister,i>(end:playerid)

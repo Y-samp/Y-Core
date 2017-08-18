@@ -1,7 +1,7 @@
 #include <a_samp>
 #include <fixes>
 
-#define _DEBUG 7
+// #define _DEBUG 7
 // #define RUN_TESTS
 
 #if defined RUN_TESTS
