@@ -12,7 +12,9 @@
 #include "Y\log"
 #include "Y\db"
 
-#include "Y\player"
+#if defined Y_PLAYER_ENABLED
+	#include "Y\player"
+#endif
 
 new
 	Language:LangEN = NO_LANGUAGE

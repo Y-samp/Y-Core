@@ -3,6 +3,7 @@
 !gamemodes/**/*.inc
 !gamemodes/**/*.pwn
 !*/
+!scriptfiles/Y/**/*
 !scriptfiles/YSI/*
 scriptfiles/YSI/test_ini
 scriptfiles/YSI/test_users
@@ -15,6 +16,5 @@ scriptfiles/YSI/new test.txt
 scriptfiles/YSI/new_mode.EN
 scriptfiles/YSI/new_mode.PL
 scriptfiles/YSI/new_mode_format.YSI
-
 
 gamemodes/test.pwn

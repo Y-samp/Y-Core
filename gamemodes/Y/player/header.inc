@@ -1,13 +1,10 @@
 #include "utils"
 #include <YSI\y_dialog>
 #include <YSI\y_text>
-#include <YSI\y_hooks>
 #include <YSI\y_dialog>
 #include <YSI\y_va>
 #include <YSI\y_inline>
 #include <YSI\y_text>
-
-#define Y_PLAYER_RESTRICT_FUNC_NAME "PlayerRestrictName"
 
 #define Player.%0[%1][%2] Player%0[%1][E_PLAYER_%0_%2]
 
@@ -27,12 +24,14 @@ enum e_ERROR_PASSWORD {
 	e_ERROR_PASSWORD_LONG
 }
 
-#define SALT_NONE						0
-#define SALT_WEAK					 	1
-#define SALT_REMOTE_STRONG 	2
+enum e_SALT {
+	SALT_NONE,
+	SALT_WEAK,
+	SALT_REMOTE_STRONG
+}
 
-#if !defined Y_USER_SALT_GENERATOR
-	#define Y_USER_SALT_GENERATOR SALT_WEAK
+#if !defined Y_PLAYER_SALT_GENERATOR
+	#define Y_PLAYER_SALT_GENERATOR SALT_WEAK
 #endif
 
 #define ALS_DO_PlayerRegister<%0> %0<PlayerRegister,i>(end:playerid)

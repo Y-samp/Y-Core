@@ -4,6 +4,10 @@
 #define _INC_player
 
 #include "player/header"
+#if defined Y_PLAYER_REQUIRE_ACCOUNT
+	#include "player/login"
+	#include "player/registration"
+#endif
 #include "player/impl"
 
 #if defined RUN_TESTS
