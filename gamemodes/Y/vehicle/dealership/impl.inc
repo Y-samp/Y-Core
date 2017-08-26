@@ -333,31 +333,29 @@ DealershipBuyVehicle(playerid)
 		Player.Vehicle[playerid][index][slot] = vehicle;
 	#endif
 
-	new
-		Float:pos[3],
-		Float:rot,
-		model
-	;
-
-	pos[0] = CurrentDealership[E_DEALERSHIP_VEHICLE_SPAWN][0];
-	pos[1] = CurrentDealership[E_DEALERSHIP_VEHICLE_SPAWN][1];
-	pos[2] = CurrentDealership[E_DEALERSHIP_VEHICLE_SPAWN][2];
-	rot = CurrentDealership[E_DEALERSHIP_VEHICLE_SPAWN][3];
-	model = _:CurrentDealershipVehicle[E_DEALERSHIP_CAR_MODEL];
+	Vehicle.Status[vehicle][pos][0] = CurrentDealership[E_DEALERSHIP_VEHICLE_SPAWN][0];
+	Vehicle.Status[vehicle][pos][1] = CurrentDealership[E_DEALERSHIP_VEHICLE_SPAWN][1];
+	Vehicle.Status[vehicle][pos][2] = CurrentDealership[E_DEALERSHIP_VEHICLE_SPAWN][2];
+	Vehicle.Status[vehicle][rot] = CurrentDealership[E_DEALERSHIP_VEHICLE_SPAWN][3];
+	Vehicle.Meta[vehicle][model] = _:CurrentDealershipVehicle[E_DEALERSHIP_CAR_MODEL];
 
 	SCM(playerid, -1, ":_______VEHICLE PURCHASED_______:");
 	SCM(playerid, -1, "REMEMBER: Leaving your vehicle in the delivery point can get your vehicle deleted by the administration without refund!");
 
 	CreateVehicle(
-		model,
-		pos[0],
-		pos[1],
-		pos[2],
-		rot,
+		Vehicle.Meta[vehicle][model],
+		Vehicle.Status[vehicle][pos][0],
+		Vehicle.Status[vehicle][pos][1],
+		Vehicle.Status[vehicle][pos][2],
+		Vehicle.Status[vehicle][rot],
 		1,
 		1,
 		 -1
 	);
+
+	#if defined Y_PLAYER_VEHICLE_ENABLED
+		SavePlayerVehicle(playerid, vehicle);
+	#endif
 
 	DealershipExit(playerid);
 	PutPlayerInVehicle(playerid, vehicle, 0);

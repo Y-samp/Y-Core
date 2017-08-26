@@ -64,3 +64,24 @@ hook OnPlayerDisconnect(playerid, reason)
 	return 1;
 }
 
+SavePlayerVehicle(playerid, vehicleid)
+{
+	inline SavedVehicle()
+	{
+		Vehicle.Meta[vehicleid][id] = DBID:cache_insert_id();
+	}
+
+	new query[128];
+	mysql_format(
+		dbhandle,
+		query,
+		sizeof query,
+		"INSERT INTO vehicles VALUES (null, %d, %d, %.2f, %.2f, %.2f, %.2f, %d, %d)",
+		_:Player.Auth[playerid][id],
+		Vehicle.Meta[vehicleid][model], Vehicle.Status[vehicleid][pos][0], Vehicle.Status[vehicleid][pos][1], Vehicle.Status[vehicleid][pos][2], 
+		Vehicle.Status[vehicleid][rot], Vehicle.Status[vehicleid][color][0], Vehicle.Status[vehicleid][color][1]
+	);
+	mysql_tquery_inline(dbhandle, query, using inline SavedVehicle);
+
+	return 1;
+}
