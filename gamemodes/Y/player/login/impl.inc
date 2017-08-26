@@ -1,3 +1,7 @@
+#if defined _inc_impl
+	#undef _inc_impl
+#endif
+
 #include <YSI\y_hooks>
 
 loadtext y_players[auth];
@@ -83,15 +87,15 @@ CheckUserPassword(playerid, const password[])
 	strcpy(peppered, Y_PLAYER_PASSWORD_PEPPER);
 	strcat(peppered, password);
 
-	SHA256_PassHash(peppered, Player.Meta[playerid][salt], hash, sizeof hash);
+	SHA256_PassHash(peppered, Player.Auth[playerid][salt], hash, sizeof hash);
 
-	if (!strcmp(hash, Player.Meta[playerid][password])) return true;
+	if (!strcmp(hash, Player.Auth[playerid][password])) return true;
 
 	return false;
 }
 
 ClearPlayerMeta(playerid)
 {
-	memset(PlayerMeta[playerid][E_PLAYER_Meta_password], 0);
-	memset(PlayerMeta[playerid][E_PLAYER_Meta_salt], 0);
+	memset(PlayerAuth[playerid][E_PLAYER_Auth_password], 0);
+	memset(PlayerAuth[playerid][E_PLAYER_Auth_salt], 0);
 }

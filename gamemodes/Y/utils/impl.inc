@@ -1,3 +1,7 @@
+#if defined _inc_impl
+	#undef _inc_impl
+#endif
+
 timer TimedKick[100](playerid)
 {
 	return Kick(playerid);

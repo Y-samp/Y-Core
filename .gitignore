@@ -2,6 +2,7 @@
 !.gitignore
 !gamemodes/**/*.inc
 !gamemodes/**/*.pwn
+gamemodes/Y/RP/**/*
 !*/
 !scriptfiles/Y/**/*
 !scriptfiles/YSI/*
@@ -16,5 +17,7 @@ scriptfiles/YSI/new test.txt
 scriptfiles/YSI/new_mode.EN
 scriptfiles/YSI/new_mode.PL
 scriptfiles/YSI/new_mode_format.YSI
+
+!README.md
 
 gamemodes/test.pwn

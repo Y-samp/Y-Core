@@ -1,3 +1,7 @@
+#if defined _inc_impl
+	#undef _inc_impl
+#endif
+
 #include <YSI\y_hooks>
 
 loadtext y_players[auth];
@@ -84,14 +88,14 @@ Register(playerid, const password[])
 
 	SHA256_PassHash(peppered, salt, hash, sizeof hash);
 
-	strcpy(Player.Meta[playerid][salt], salt);
-	strcpy(Player.Meta[playerid][password], hash);
+	strcpy(Player.Auth[playerid][salt], salt);
+	strcpy(Player.Auth[playerid][password], hash);
 
 	new
 		query[256]
 	;
 
-	mysql_format(dbhandle, query, sizeof query, "INSERT INTO players VALUES (null, '%e', '%e', '%e', NOW())", Player.Meta[playerid][name], Player.Meta[playerid][password], Player.Meta[playerid][salt]);
+	mysql_format(dbhandle, query, sizeof query, "INSERT INTO players VALUES (null, '%e', '%e', '%e', NOW())", Player.Auth[playerid][name], Player.Auth[playerid][password], Player.Auth[playerid][salt]);
 
 	inline SavePlayer()
 	{

@@ -1,5 +1,9 @@
 #include <a_samp>
 #include <fixes>
+#include <streamer>
+#include <sscanf2>
+
+#define Y_DEBUG
 
 // #define _DEBUG 7
 // #define RUN_TESTS
@@ -9,31 +13,10 @@
 #endif
 
 #include "config"
-#include "Y\log"
-#include "Y\db"
 
-#if defined Y_PLAYER_ENABLED
-	#include "Y\player"
-#endif
-
-new
-	Language:LangEN = NO_LANGUAGE
-;
+#include "Y\Y"
+#include "Y\Y"
 
 main () {
 	print("====== Y-Core ======");
-}
-
-public OnGameModeInit()
-{
-	LangEN = Langs_Add("EN", "English");
-
-	return 1;
-}
-
-public OnPlayerConnect(playerid)
-{
-	Langs_SetPlayerLanguage(playerid, LangEN);
-
-	return 1;
 }

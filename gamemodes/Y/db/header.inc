@@ -1,6 +1,9 @@
+#if defined _inc_header
+	#undef _inc_header
+#endif
+
 #include <a_mysql>
 #include <a_mysql_yinline>
-#include <YSI\y_hooks>
 
 static stock DBID:__DBID__;
 

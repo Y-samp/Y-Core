@@ -1,1 +1,0 @@
-#define log va_printf
