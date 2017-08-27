@@ -2,6 +2,8 @@
 	#undef _inc_impl
 #endif
 
+#include <YSI\y_hooks>
+
 hook OnGameModeInit()
 {
 	GROUP_ADD<LoggedGroup>

@@ -22,7 +22,15 @@ hook OnPlayerLogin(playerid)
 
 		cache_get_value_name_int(0, "vip", Player.Status[playerid][vip]);
 		cache_get_value_name_int(0, "money", Player.Status[playerid][money]);
-		cache_get_value_name_int(0, "admin", Player.Status[playerid][admin]);
+		
+		new admin = 0;
+		cache_get_value_name_int(0, "admin", admin);
+		Player.Status[playerid][admin] = admin;
+
+		if (admin > 0) {
+			Group_SetPlayer(AdminGroup[admin - 1], playerid, true);
+		}
+
 		new dev = 0;
 		cache_get_value_name_int(0, "developer", dev);
 		Player.Status[playerid][developer] = !!dev;
@@ -37,6 +45,10 @@ hook OnPlayerLogin(playerid)
 	new query[80];
 	mysql_format(dbhandle, query, sizeof query, "SELECT * FROM player_statuses WHERE player_id = %d LIMIT 1", _:Player.Auth[playerid][id]);
 	mysql_tquery_inline(dbhandle, query, using inline FetchedPlayerStatus);
+
+	new ip[16];
+	GetPlayerIp(playerid, ip, sizeof ip);
+	Player.Status[playerid][ip] = IPToInt(ip);
 
 	return 1;
 }

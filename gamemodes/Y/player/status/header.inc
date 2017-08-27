@@ -3,8 +3,10 @@
 #endif
 
 #include <YSI\y_commands>
+#include <YSI\y_utils>
 
 enum E_PLAYER_STATUS {
+	E_PLAYER_Status_ip,
 	E_PLAYER_Status_money,
 	E_PLAYER_Status_vip,
 	E_PLAYER_Status_admin,

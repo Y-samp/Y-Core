@@ -14,3 +14,5 @@
 #if defined Y_PLAYER_VEHICLE_ENABLED
 	#include "vehicle\impl"
 #endif
+
+#include "admin\impl"
