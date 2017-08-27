@@ -325,7 +325,7 @@ DealershipBuyVehicle(playerid)
 
 	GivePlayerMoney(playerid, -price);
 
-	new vehicle = Iter_Free(Vehicle);
+	new vehicle = GetFreeVehicleSlot();
 
 	log("Vehicle bought for %d with index %d", playerid, vehicle);
 
@@ -344,13 +344,9 @@ DealershipBuyVehicle(playerid)
 
 	CreateVehicle(
 		Vehicle.Meta[vehicle][model],
-		Vehicle.Status[vehicle][pos][0],
-		Vehicle.Status[vehicle][pos][1],
-		Vehicle.Status[vehicle][pos][2],
+		Vehicle.Status[vehicle][pos][0], Vehicle.Status[vehicle][pos][1], Vehicle.Status[vehicle][pos][2],
 		Vehicle.Status[vehicle][rot],
-		1,
-		1,
-		 -1
+		1, 1,	-1
 	);
 
 	#if defined Y_PLAYER_VEHICLE_ENABLED

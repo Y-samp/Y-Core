@@ -21,7 +21,6 @@ hook OnPlayerLogin(playerid)
 {
 	printf("Player %d logged in", playerid);
 	ClearPlayerMeta(playerid);
-	SpawnPlayer(playerid);
 
 	return 1;
 }

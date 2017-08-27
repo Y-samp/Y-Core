@@ -11,6 +11,7 @@ hook OnPlayerConnect(playerid)
 {
 	if (funcidx(Y_PLAYER_RESTRICT_NAME_FUNC) != -1) {
 		new ret = CallLocalFunction(Y_PLAYER_RESTRICT_NAME_FUNC, "i", playerid);
+
 		if(ret != 1) {
 			return 1;
 		}
@@ -28,6 +29,7 @@ hook OnPlayerConnect(playerid)
 hook OnPlayerLogin(playerid)
 {
 	Group_SetPlayer(LoggedGroup, playerid, true);
+	SpawnPlayer(playerid);
 
 	return 1;
 }
@@ -38,7 +40,6 @@ hook OnGameModeInit()
 
 	return 1;
 }
-
 
 #if defined Y_PLAYER_REQUIRE_ACCOUNT
 hook OnPlayerRequestClass(playerid, classid)
@@ -58,7 +59,7 @@ hook OnPlayerSpawn(playerid)
 
 FetchPlayer(playerid)
 {
-	new query[40 + MAX_PLAYER_NAME + 1];
+	new query[64 + MAX_PLAYER_NAME + 1];
 	new name[MAX_PLAYER_NAME + 1];
 	GetPlayerName(playerid, name, sizeof name);
 

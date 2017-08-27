@@ -16,10 +16,11 @@ hook OnPlayerLogin(playerid)
 				@return print("PlayerVehicles if full");
 			}
 
-			new vid = Iter_Free(Vehicle);
+			new vid = GetFreeVehicleSlot();
 			Player.Vehicle[playerid][index][idx] = vid;
 			Iter_Add(PlayerVehicle[playerid], idx);
 
+			cache_get_value_name_int(row, "id", _:Vehicle.Meta[vid][id]);
 			cache_get_value_name_int(row, "model", Vehicle.Meta[vid][model]);
 			cache_get_value_name_float(row, "X", Vehicle.Status[vid][pos][0]);
 			cache_get_value_name_float(row, "Y", Vehicle.Status[vid][pos][1]);
@@ -39,7 +40,7 @@ hook OnPlayerLogin(playerid)
 				-1
 			);
 
-			log("Loaded player vehicle in slot %d", idx);
+			log("Loaded player vehicle in slot %d (dbid %d)", idx, _:Vehicle.Meta[vid][id]);
 		}
 	}
 
@@ -62,6 +63,22 @@ hook OnPlayerDisconnect(playerid, reason)
 	Iter_Clear(PlayerVehicle[playerid]);
 
 	return 1;
+}
+
+hook OnPlayerStats(playerid)
+{
+	new
+		vehicles[144],
+		i = 1
+	;
+	foreach (new vehicle:PlayerVehicle[playerid]) {
+		format(vehicles, sizeof vehicles, "%s[Vehicle %d]: %d ", vehicles, i, _:Vehicle.Meta[Player.Vehicle[playerid][index][vehicle]][id]);
+		i++;
+	}
+
+	SCM(playerid, -1, vehicles);
+
+	return 1;	
 }
 
 SavePlayerVehicle(playerid, vehicleid)

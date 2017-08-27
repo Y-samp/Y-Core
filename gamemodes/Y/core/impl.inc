@@ -4,6 +4,11 @@
 
 #include <YSI\y_hooks>
 
+hook OnGameModeInit()
+{
+	Group_SetGlobalCommandDefault(false);
+}
+
 public OnQueryError(errorid, const error[], const callback[], const query[], MySQL:handle)
 {
 	switch(errorid) {
@@ -14,7 +19,7 @@ public OnQueryError(errorid, const error[], const callback[], const query[], MyS
 			printf("Something is wrong in your syntax, query: %s",query);
 		}
 		default: {
-			printf("Other mysql error %d %s (callback %s)", errorid, error, callback);
+			printf("Other mysql error %d %s (callback %s), query %s", errorid, error, callback, query);
 		}
 	}
 	return 1;

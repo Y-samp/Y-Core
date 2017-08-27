@@ -15,6 +15,9 @@
 #include "config"
 
 #include "Y\Y"
+
+// Here is place for custom logic
+
 #include "Y\Y"
 
 main () {

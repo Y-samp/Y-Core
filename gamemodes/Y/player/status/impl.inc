@@ -4,6 +4,14 @@
 
 #include <YSI\y_hooks>
 
+hook OnGameModeInit()
+{
+	GROUP_ADD<LoggedGroup>
+	{
+		@YCMD:status;
+	}
+}
+
 hook OnPlayerLogin(playerid)
 {
 	inline FetchedPlayerStatus()
@@ -14,6 +22,7 @@ hook OnPlayerLogin(playerid)
 
 		cache_get_value_name_int(0, "vip", Player.Status[playerid][vip]);
 		cache_get_value_name_int(0, "money", Player.Status[playerid][money]);
+		cache_get_value_name_int(0, "admin", Player.Status[playerid][admin]);
 		new dev = 0;
 		cache_get_value_name_int(0, "developer", dev);
 		Player.Status[playerid][developer] = !!dev;
@@ -30,4 +39,26 @@ hook OnPlayerLogin(playerid)
 	mysql_tquery_inline(dbhandle, query, using inline FetchedPlayerStatus);
 
 	return 1;
+}
+
+hook OnPlayerStats(playerid)
+{
+	new str[144];
+	format(str, sizeof str, "[Money]: %d ", Player.Status[playerid][money]);
+	format(str, sizeof str, "%s[Developer]: %s ", str, Player.Status[playerid][developer] ? "Yes" : "No");
+	format(str, sizeof str, "%s[Vip]: %s ", str, Player.Status[playerid][vip] ? "Yes" : "No");
+	format(str, sizeof str, "%s[Admin level]: %d", str, Player.Status[playerid][admin]);
+
+	SCM(playerid, -1, str);
+
+	return 1;	
+}
+
+YCMD:stats(playerid, params[], help)
+{
+    if(help) return SCM(playerid, -1, "Not supported");
+
+    call OnPlayerStats(playerid);
+
+    return 1;
 }

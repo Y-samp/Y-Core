@@ -2,6 +2,8 @@
 	#undef _inc_header
 #endif
 
+#include <YSI\y_commands>
+
 enum E_VEHICLE_STATUS {
 	Float:E_VEHICLE_Status_pos[3],
 	Float:E_VEHICLE_Status_rot,

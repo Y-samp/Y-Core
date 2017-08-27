@@ -18,3 +18,5 @@ new PlayerAuth[MAX_PLAYERS][E_PLAYER_AUTH];
 new
 	Group:LoggedGroup
 ;
+
+#define IsLoggedIn(%0) (Group_GetPlayer(LoggedGroup, %0))
