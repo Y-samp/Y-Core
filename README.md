@@ -24,9 +24,9 @@ new PlayerCategory[MAX_PLAYERS][E_PLAYER_CATEGORY][OPTIONAL_DIMENSION];
 
 // Accesing
 new foo = Player.Category[playerid][property][SOME_INDEX];
-```pawn
+```
 
-As you have noticed, the optional dimension has to be placed after enumerator index. This is due to PAWN preprocessor limitations. So, for examle, definiting user vehicles has to look like this:
+As you have noticed, the optional dimension has to be placed after enumerator index. This is due to PAWN preprocessor limitations. So, for example, definiting user vehicles has to look like this:
 
 ```pawn
 new PlayerVehicle[MAX_PLAYERS][E_PLAYER_VEHICLE][MAX_VEHICLES_PER_PLAYER];

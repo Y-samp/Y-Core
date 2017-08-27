@@ -8,7 +8,7 @@ hook OnGameModeInit()
 {
 	GROUP_ADD<LoggedGroup>
 	{
-		@YCMD:status;
+		@YCMD:stats;
 	}
 }
 
