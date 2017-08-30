@@ -4,7 +4,7 @@
 
 #include <YSI\y_hooks>
 
-hook OnGameModeInit()
+hook OnGroupInit()
 {
 	GROUP_ADD<LoggedGroup>
 	{

@@ -4,7 +4,9 @@
 
 #include <YSI\y_hooks>
 
-hook OnGameModeInit()
+loadtext y_players[status];
+
+hook OnGroupInit()
 {
 	GROUP_ADD<LoggedGroup>
 	{
@@ -53,24 +55,27 @@ hook OnPlayerLogin(playerid)
 	return 1;
 }
 
+hook OnPlayerRegister(playerid)
+{
+	new query[128];
+	mysql_format(dbhandle, query, sizeof query, "INSERT INTO player_statuses(player_id) VALUES(%d)", _:Player.Auth[playerid][id]);
+	mysql_pquery(dbhandle, query);
+
+	return 1;
+}
+
 hook OnPlayerStats(playerid)
 {
-	new str[144];
-	format(str, sizeof str, "[Money]: %d ", Player.Status[playerid][money]);
-	format(str, sizeof str, "%s[Developer]: %s ", str, Player.Status[playerid][developer] ? "Yes" : "No");
-	format(str, sizeof str, "%s[Vip]: %s ", str, Player.Status[playerid][vip] ? "Yes" : "No");
-	format(str, sizeof str, "%s[Admin level]: %d", str, Player.Status[playerid][admin]);
-
-	SCM(playerid, -1, str);
+	Text_Send(playerid, $PLAYER_STATS, Player.Status[playerid][money], Player.Status[playerid][developer] ? "Yes" : "No", Player.Status[playerid][vip] ? "Yes" : "No", Player.Status[playerid][admin]);
 
 	return 1;	
 }
 
 YCMD:stats(playerid, params[], help)
 {
-    if(help) return SCM(playerid, -1, "Not supported");
+	if(help) return SCM(playerid, -1, "Not supported");
 
-    call OnPlayerStats(playerid);
+	call OnPlayerStats(playerid);
 
-    return 1;
+	return 1;
 }

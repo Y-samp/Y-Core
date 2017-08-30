@@ -12,6 +12,13 @@ hook OnGameModeInit()
 	SetColour("SUCCESS", X11_GREEN);
 	SetColour("INFO", X11_LIGHT_BLUE);
 	SetColour("NORMAL", X11_WHITE);
+
+	defer onAllInitiated();
+}
+
+timer onAllInitiated[100]()
+{
+	call OnGroupInit();
 }
 
 public OnQueryError(errorid, const error[], const callback[], const query[], MySQL:handle)

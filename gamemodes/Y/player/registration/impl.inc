@@ -99,6 +99,7 @@ Register(playerid, const password[])
 
 	inline SavePlayer()
 	{
+		Player.Auth[playerid][id] = DBID:cache_insert_id();
 		call OnPlayerRegister(playerid);
 	}
 

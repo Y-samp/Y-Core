@@ -12,66 +12,6 @@ hook OnGroupInit()
 	}
 }
 
-hook OnPlayerClickTextDraw(playerid, Text:clickedid)
-{
-	if (clickedid == DealershipRotateButtonBg) {
-		new E_DEALERSHIP_CAMERA:mode;
-		if (PlayerDealershipCamera[playerid] == E_DEALERSHIP_CAMERA_BACK) {
-			mode = E_DEALERSHIP_CAMERA_FRONT;
-		} else {
-			mode = E_DEALERSHIP_CAMERA:(_:PlayerDealershipCamera[playerid] + 1);
-		}
-
-		DealershipSetCamera(playerid, mode);
-
-		return 1;
-	}
-
-	if (clickedid == DealershipNextButtonBg) {
-		DealershipGetVehicle(playerid, PlayerDealershipVehicle[playerid] + 1);
-		return 1;
-	}
-	if (clickedid == DealershipPreviousButtonBg) {
-		DealershipGetVehicle(playerid, PlayerDealershipVehicle[playerid] - 1);
-		return 1;
-	}
-	if (clickedid == DealershipBuyButtonBg) {
-		DealershipBuyVehicle(playerid);
-		return 1;
-	}
-
-	return 1;
-}
-
-hook OnPlayerConnect(playerid)
-{
-	DealershipModelName[playerid] = CreatePlayerTextDraw(playerid, 620.0, 110.0, "ModelName");
-	PlayerTextDrawSetOutline(playerid, DealershipModelName[playerid], 2);
-	PlayerTextDrawLetterSize(playerid, DealershipModelName[playerid], 0.6, 1.5);
-	PlayerTextDrawFont(playerid, DealershipModelName[playerid], 3);
-	PlayerTextDrawAlignment(playerid, DealershipModelName[playerid], 3);
-	PlayerTextDrawBackgroundColor(playerid, DealershipModelName[playerid], 0x000000FF);
-
-	DealershipPrice[playerid] = CreatePlayerTextDraw(playerid, 620.0, 130.0, "$0");
-	PlayerTextDrawSetOutline(playerid, DealershipPrice[playerid], 2);
-	PlayerTextDrawLetterSize(playerid, DealershipPrice[playerid], 0.6, 1.8);
-	PlayerTextDrawFont(playerid, DealershipPrice[playerid], 3);
-	PlayerTextDrawAlignment(playerid, DealershipPrice[playerid], 3);
-	PlayerTextDrawBackgroundColor(playerid, DealershipPrice[playerid], 0x000000FF);
-	PlayerTextDrawColor(playerid, DealershipPrice[playerid], 0x2DCC0AFF);
-}
-
-hook OnPlayerDisconnect(playerid, reason)
-{
-	PlayerTextDrawDestroy(playerid, DealershipModelName[playerid]);
-	PlayerTextDrawDestroy(playerid, DealershipPrice[playerid]);
-
-	if (DealershipVehicle[playerid] != INVALID_VEHICLE_ID) {
-		DestroyVehicle(DealershipVehicle[playerid]);
-		DealershipVehicle[playerid] = INVALID_VEHICLE_ID;
-	}
-}
-
 hook OnScriptInit()
 {
 	new text[128];
@@ -146,6 +86,66 @@ hook OnScriptInit()
 	TextDrawBackgroundColor(DealershipVipDiscount, 0x000000FF);
 	
 	return 1;
+}
+
+hook OnPlayerClickTextDraw(playerid, Text:clickedid)
+{
+	if (clickedid == DealershipRotateButtonBg) {
+		new E_DEALERSHIP_CAMERA:mode;
+		if (PlayerDealershipCamera[playerid] == E_DEALERSHIP_CAMERA_BACK) {
+			mode = E_DEALERSHIP_CAMERA_FRONT;
+		} else {
+			mode = E_DEALERSHIP_CAMERA:(_:PlayerDealershipCamera[playerid] + 1);
+		}
+
+		DealershipSetCamera(playerid, mode);
+
+		return 1;
+	}
+
+	if (clickedid == DealershipNextButtonBg) {
+		DealershipGetVehicle(playerid, PlayerDealershipVehicle[playerid] + 1);
+		return 1;
+	}
+	if (clickedid == DealershipPreviousButtonBg) {
+		DealershipGetVehicle(playerid, PlayerDealershipVehicle[playerid] - 1);
+		return 1;
+	}
+	if (clickedid == DealershipBuyButtonBg) {
+		DealershipBuyVehicle(playerid);
+		return 1;
+	}
+
+	return 1;
+}
+
+hook OnPlayerConnect(playerid)
+{
+	DealershipModelName[playerid] = CreatePlayerTextDraw(playerid, 620.0, 110.0, "ModelName");
+	PlayerTextDrawSetOutline(playerid, DealershipModelName[playerid], 2);
+	PlayerTextDrawLetterSize(playerid, DealershipModelName[playerid], 0.6, 1.5);
+	PlayerTextDrawFont(playerid, DealershipModelName[playerid], 3);
+	PlayerTextDrawAlignment(playerid, DealershipModelName[playerid], 3);
+	PlayerTextDrawBackgroundColor(playerid, DealershipModelName[playerid], 0x000000FF);
+
+	DealershipPrice[playerid] = CreatePlayerTextDraw(playerid, 620.0, 130.0, "$0");
+	PlayerTextDrawSetOutline(playerid, DealershipPrice[playerid], 2);
+	PlayerTextDrawLetterSize(playerid, DealershipPrice[playerid], 0.6, 1.8);
+	PlayerTextDrawFont(playerid, DealershipPrice[playerid], 3);
+	PlayerTextDrawAlignment(playerid, DealershipPrice[playerid], 3);
+	PlayerTextDrawBackgroundColor(playerid, DealershipPrice[playerid], 0x000000FF);
+	PlayerTextDrawColor(playerid, DealershipPrice[playerid], 0x2DCC0AFF);
+}
+
+hook OnPlayerDisconnect(playerid, reason)
+{
+	PlayerTextDrawDestroy(playerid, DealershipModelName[playerid]);
+	PlayerTextDrawDestroy(playerid, DealershipPrice[playerid]);
+
+	if (DealershipVehicle[playerid] != INVALID_VEHICLE_ID) {
+		DestroyVehicle(DealershipVehicle[playerid]);
+		DealershipVehicle[playerid] = INVALID_VEHICLE_ID;
+	}
 }
 
 hook OnPlayerEnter(playerid)

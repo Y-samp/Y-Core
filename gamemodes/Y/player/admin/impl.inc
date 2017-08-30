@@ -11,12 +11,17 @@ hook OnGameModeInit()
 	CreateAdminGroups();
 
 	Command_AddAlt(YCMD:setadminlevel, "sal");
+}
+
+hook OnGroupInit()
+{
+	Group_AddChild(AdminGroup[0], DeveloperGroup);
 
 	GROUP_ADD<AdminGroup[Y_PLAYER_ADMIN_MAX_LEVEL - 1]>
 	{
 		@YCMD:setadminlevel;
+		@YCMD:sal;
 	}
-
 
 	return 1;
 }
@@ -83,13 +88,13 @@ SetAdminLevel(playerid, level, bool:force = false)
 	if (!(1 <= level <= Y_PLAYER_ADMIN_MAX_LEVEL)) {
 		printf("Player %d admin level cannot be set to %d", playerid, level);
 
-		return 0;
+		return 1;
 	}
 
 	Group_SetPlayer(AdminGroup[level - 1], playerid, true);
 	Player.Status[playerid][admin] = level;
 
-	return 1;
+	return 0;
 }
 
 bool:IsAdminLevel(playerid, level)
@@ -121,7 +126,7 @@ YCMD:setadminlevel(playerid, params[], help)
 	if (Player.Status[playerid][admin] <= Player.Status[targetid][admin]) return Text_Send(playerid, $UNAUTHORIZED_ACTION);
 
 	new sal = SetAdminLevel(targetid, level);
-	if(!sal) {
+	if(sal) {
 		if (sal == 1) return Text_Send(playerid, $INVALID_LEVEL_SPECIFIED, 1, Y_PLAYER_ADMIN_MAX_LEVEL);
 		else if (sal == 2) return Text_Send(playerid, $UNAUTHORIZED_ACTION);
 	}
@@ -132,6 +137,10 @@ YCMD:setadminlevel(playerid, params[], help)
 	if (announce) {
 		Text_Send(LoggedGroup, $ADMIN_LEVEL_CHANGE, Player.Auth[targetid][name], level, Player.Auth[playerid][name]);
 	}
+
+	new query[80];
+	mysql_format(dbhandle, query, sizeof query, "UPDATE player_statuses SET admin = %d WHERE player_id = %d", Player.Status[targetid][admin], _:Player.Auth[targetid][id]);
+	mysql_pquery(dbhandle, query);
 
 	return 1;
 }

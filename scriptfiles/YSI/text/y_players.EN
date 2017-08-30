@@ -20,3 +20,6 @@ PASSWORD_TOO_LONG = {ERROR}Passphrase can be at most %d characters long\n\n{/}
 [admin]
 INVALID_COMMAND_PARAMS_SAL = {ERROR}Invalid parameters. {INFO}Usage: /%n <targetid> <level> (<announce_for_all>)
 ADMIN_LEVEL_CHANGE = {INFO}Admin level of player %s was changed to %d by admin %s
+
+[status]
+PLAYER_STATS = {INFO}[Money] {NORMAL}%d {INFO}[Developer] {NORMAL}%s {INFO}[VIP] {NORMAL}%s {INFO}[Admin level] {NORMAL}%d
