@@ -1,0 +1,9 @@
+[auth]
+INVALID_USERNAME = {WHITE}Your username is in an {/}{RED}invalid{/}{WHITE} format. It must be in form of {/}{INFO}"Firstname_Lastname"{/} 
+
+[admin]
+ADUTY_ON = {SUCCESS}You are now on admin duty
+ADUTY_OFF = {SUCCESS}You are now not on admin duty
+ADUTY_BROADCAST_ON = {WHITE}[[ Admin %s is now on duty ]]
+ADUTY_BROADCAST_OFF = {WHITE}[[ Admin %s is no longer on duty ]]
+

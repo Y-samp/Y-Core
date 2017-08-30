@@ -1,0 +1,22 @@
+[auth]
+LOGIN_BOX_TITLE = Please login
+LOGIN_BOX_TEXT = %s{WHITE}Please enter your passphrase.\nAttempt{/} {GRAY}%d/{/}{ERROR}%d{/}
+LOGIN_BOX_LOGIN = Login
+LOGIN_BOX_EXIT = Exit
+INVALID_PASSWORD = {ERROR}Invalid passphrase\n\n{/}
+INACTIVE_KICK = You have been kicked for not logging in
+EXCEEDED_MAX_LOGIN_ATTEMPTS = You have failed to login after %d attempts
+
+REGISTRAION_VIA_WEBSITE = This server does not allow registering in-game. Please check our website
+REGISTRATION_BOX_TITLE = Registration
+REGISTRATION_BOX_TEXT = %s{WHITE}Welcome new player!\nType in your new passphrase\nIt has to be between %d and %d characters long
+REGISTRATION_BOX_REGISTER = Register
+REGISTRATION_BOX_EXIT = Exit
+
+PASSWORD_EMPTY = {ERROR}Passphrase cannot be empty\n\n{/}
+PASSWORD_TOO_SHORT = {ERROR}Passphrase must be at least %d characters long\n\n{/}
+PASSWORD_TOO_LONG = {ERROR}Passphrase can be at most %d characters long\n\n{/}
+
+[admin]
+INVALID_COMMAND_PARAMS_SAL = {ERROR}Invalid parameters. {INFO}Usage: /%n <targetid> <level> (<announce_for_all>)
+ADMIN_LEVEL_CHANGE = {INFO}Admin level of player %s was changed to %d by admin %s

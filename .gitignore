@@ -7,7 +7,7 @@ gamemodes/config.inc
 gamemodes/Y/RP/**/*
 !*/
 !scriptfiles/Y/**/*
-!scriptfiles/YSI/*
+!scriptfiles/YSI/**/*
 scriptfiles/YSI/test_ini
 scriptfiles/YSI/test_users
 scriptfiles/YSI/tests
