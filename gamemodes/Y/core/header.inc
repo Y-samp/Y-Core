@@ -3,6 +3,8 @@
 #endif
 
 #include <YSI\y_groups>
+#include <YSI\y_colours>
 #include <YSI\y_commands>
+#include <YSI\y_master>
 
 #define SCM va_SendClientMessage

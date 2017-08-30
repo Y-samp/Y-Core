@@ -7,6 +7,11 @@
 hook OnGameModeInit()
 {
 	Group_SetGlobalCommandDefault(false);
+
+	SetColour("ERROR", X11_RED);
+	SetColour("SUCCESS", X11_GREEN);
+	SetColour("INFO", X11_LIGHT_BLUE);
+	SetColour("NORMAL", X11_WHITE);
 }
 
 public OnQueryError(errorid, const error[], const callback[], const query[], MySQL:handle)
