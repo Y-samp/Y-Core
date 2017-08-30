@@ -2,6 +2,7 @@
 !.gitignore
 !gamemodes/**/*.inc
 !gamemodes/**/*.pwn
+!gamemodes/config.inc.template
 gamemodes/Y/RP/**/*
 !*/
 !scriptfiles/Y/**/*
