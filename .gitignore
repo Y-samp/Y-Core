@@ -3,6 +3,7 @@
 !gamemodes/**/*.inc
 !gamemodes/**/*.pwn
 !gamemodes/config.inc.template
+gamemodes/config.inc
 gamemodes/Y/RP/**/*
 !*/
 !scriptfiles/Y/**/*

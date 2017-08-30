@@ -1,3 +1,8 @@
+// #define Y_DEBUG
+
+// #define _DEBUG 7
+// #define RUN_TESTS
+
 #define MYSQL_HOST 				"127.0.0.1"
 #define MYSQL_USER 				"root"
 #define MYSQL_PASSWORD 		""

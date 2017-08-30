@@ -3,16 +3,12 @@
 #include <streamer>
 #include <sscanf2>
 
-#define Y_DEBUG
-
-// #define _DEBUG 7
-// #define RUN_TESTS
+#include "config"
 
 #if defined RUN_TESTS
 	#include <YSI\y_testing>
 #endif
 
-#include "config"
 
 #include "Y\Y"
 
