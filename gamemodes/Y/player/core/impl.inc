@@ -11,6 +11,16 @@ hook OnGameModeInit()
 	return 1;
 }
 
+hook OnGroupInit()
+{
+	GROUP_ADD<LoggedGroup>
+	{
+		@YCMD:enter;
+	}
+
+	return 1;
+}
+
 YCMD:enter(playerid, params[], help)
 {
 	if(help) return SCM(playerid, -1, "Not supported");

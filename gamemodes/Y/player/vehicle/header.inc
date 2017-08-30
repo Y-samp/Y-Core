@@ -9,6 +9,7 @@
 #include <YSI\y_iterate>
 #include <YSI\y_inline>
 #include <YSI\y_commands>
+#include <YSI\y_text>
 
 enum E_PLAYER_VEHICLE {
 	E_PLAYER_Vehicle_index

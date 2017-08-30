@@ -154,7 +154,7 @@ hook OnPlayerEnter(playerid)
 		if (IsPlayerInRangeOfPoint(playerid, 7.0, Dealership[E_DEALERSHIP_PLACE:place][E_DEALERSHIP_ENTRANCE][0], Dealership[E_DEALERSHIP_PLACE:place][E_DEALERSHIP_ENTRANCE][1],  Dealership[E_DEALERSHIP_PLACE:place][E_DEALERSHIP_ENTRANCE][2]) && GetPlayerVirtualWorld(playerid) == 0) {
 			DealershipEnter(playerid, E_DEALERSHIP_PLACE:place);
 
-			return 1;
+			return Y_HOOKS_BREAK_RETURN_1;
 		}
 	}
 
@@ -331,6 +331,7 @@ DealershipBuyVehicle(playerid)
 
 	#if defined Y_PLAYER_VEHICLE_ENABLED
 		Player.Vehicle[playerid][index][slot] = vehicle;
+		Iter_Add(PlayerVehicle[playerid], slot);
 	#endif
 
 	Vehicle.Status[vehicle][pos][0] = CurrentDealership[E_DEALERSHIP_VEHICLE_SPAWN][0];
@@ -349,7 +350,7 @@ DealershipBuyVehicle(playerid)
 		1, 1,	-1
 	);
 
-	#if defined Y_PLAYER_VEHICLE_ENABLED
+	#if defined Y_PLAYER_REQUIRE_ACCOUNT && defined Y_PLAYER_VEHICLE_ENABLED
 		SavePlayerVehicle(playerid, vehicle);
 	#endif
 

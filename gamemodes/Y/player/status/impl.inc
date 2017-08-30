@@ -8,20 +8,19 @@ loadtext y_players[status];
 
 hook OnGroupInit()
 {
-	printf("GRoup is %06x", _:LoggedGroup);
 	GROUP_ADD<LoggedGroup>
 	{
 		@YCMD:stats;
 	}
 }
 
-#if defined Y_PLAYER_REQUIRE_ACCOUNT
-	hook OnPlayerLogin(playerid)
-	{
+hook OnPlayerLogin(playerid)
+{
+	#if defined Y_PLAYER_REQUIRE_ACCOUNT
 		inline FetchedPlayerStatus()
 		{
 			if (!cache_num_rows()) {
-				@return log("Did not find player status data");
+				@return log("Did not find player %d status data", playerid);
 			}
 
 			cache_get_value_name_int(0, "vip", Player.Status[playerid][vip]);
@@ -49,14 +48,16 @@ hook OnGroupInit()
 		new query[80];
 		mysql_format(dbhandle, query, sizeof query, "SELECT * FROM player_statuses WHERE player_id = %d LIMIT 1", _:Player.Auth[playerid][id]);
 		mysql_tquery_inline(dbhandle, query, using inline FetchedPlayerStatus);
+	#endif
 
-		new ip[16];
-		GetPlayerIp(playerid, ip, sizeof ip);
-		Player.Status[playerid][ip] = IPToInt(ip);
+	new ip[16];
+	GetPlayerIp(playerid, ip, sizeof ip);
+	Player.Status[playerid][ip] = IPToInt(ip);
 
-		return 1;
-	}
+	return 1;
+}
 
+#if defined Y_PLAYER_REQUIRE_ACCOUNT
 	hook OnPlayerRegister(playerid)
 	{
 		new query[128];
@@ -72,6 +73,13 @@ hook OnPlayerStats(playerid)
 	Text_Send(playerid, $PLAYER_STATS, Player.Status[playerid][money], Player.Status[playerid][developer] ? "Yes" : "No", Player.Status[playerid][vip] ? "Yes" : "No", Player.Status[playerid][admin]);
 
 	return 1;	
+}
+
+hook OnPlayerDisconnect(playerid, reason)
+{
+	memset(PlayerStatus[playerid][E_PLAYER_STATUS:0], _:E_PLAYER_STATUS, 0);
+
+	return 1;
 }
 
 YCMD:stats(playerid, params[], help)

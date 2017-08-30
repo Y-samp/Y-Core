@@ -2,6 +2,18 @@
 	#undef _inc_impl
 #endif
 
+#include <YSI\y_hooks>
+
+loadtext y[core], y_vehicles[core];
+
+hook OnGroupInit()
+{
+	GROUP_ADD<DeveloperGroup>
+	{
+		@YCMD:setvcolor;
+	}
+}
+
 GetVehicleIDFromDBID(dbid)
 {
 	foreach (new vehicle:Vehicle) {
@@ -178,4 +190,32 @@ GetModelPrice(model)
 	else if(model == 603) return 100000;
 	else if(model == 609) return 85000;
 	else return 0;
+}
+
+YCMD:setvcolor(playerid, params[], help)
+{
+	if(help) return SCM(playerid, -1, "Not supported");
+
+	new
+		index,
+		color[2]
+	;
+
+	if (sscanf(params, "ddd", index, color[0], color[1])) return Text_Send(playerid, $INVALID_COMMAND_PARAMS_SETVCOLOR, YCMD:setvcolor);
+
+	new id;
+	#if defined Y_PLAYER_VEHICLE_ENABLED
+		if (!(1 <= index <= Iter_Size(PlayerVehicle[playerid]))) return Text_Send(playerid, $INVALID_VEHICLE_INDEX, 1, Iter_Size(PlayerVehicle[playerid]));
+		if (!Iter_Contains(PlayerVehicle[playerid], index - 1)) return Text_Send(playerid, $INVALID_VEHICLE_INDEX_EMPTY); 
+
+		id = Player.Vehicle[playerid][index][index - 1];
+	#else
+		id = index;
+	#endif
+
+	ChangeVehicleColor(id, color[0], color[1]);
+
+	Text_Send(playerid, $ACTION_SUCCESS);
+
+	return 1;
 }

@@ -6,6 +6,9 @@
 	#error Y vehicle requires Y players to be enabled
 #endif
 
+#include <YSI\y_commands>
+#include <YSI\y_text>
+
 #define Vehicle.%0[%1][%2] Vehicle%0[%1][E_VEHICLE_%0_%2]
 
 // Vehicle information that does not change

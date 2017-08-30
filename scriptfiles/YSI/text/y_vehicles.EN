@@ -1,0 +1,7 @@
+[core]
+INVALID_COMMAND_PARAMS_SETVCOLOR = {ERROR}Invalid parameters. {INFO}Usage: /%n <vid> <color_1> <color_2>
+INVALID_VEHICLE_INDEX = {ERROR}Invalid vehicle index.{INFO} Available range is %d to %d
+INVALID_VEHICLE_INDEX_EMPTY = {ERROR}You don't have a vehicle in this slot
+
+[status]
+VEHICLE_STATS = {INFO}[Vehicle %d] {NORMAL}%d

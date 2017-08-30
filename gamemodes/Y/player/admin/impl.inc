@@ -86,7 +86,7 @@ SetAdminLevel(playerid, level, bool:force = false)
 	ClearAdminLevel(playerid);
 
 	if (!(1 <= level <= Y_PLAYER_ADMIN_MAX_LEVEL)) {
-		printf("Player %d admin level cannot be set to %d", playerid, level);
+		log("Player %d admin level cannot be set to %d", playerid, level);
 
 		return 1;
 	}
