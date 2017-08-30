@@ -83,7 +83,7 @@ hook OnPlayerStats(playerid)
 		;
 
 		#if defined Y_PLAYER_REQUIRE_ACCOUNT
-			id = _:Vehicle.Meta[Player.Vehicle[playerid][index][vehicle]][id]
+			id = _:Vehicle.Meta[Player.Vehicle[playerid][index][vehicle]][id];
 		#else
 			id = Player.Vehicle[playerid][index][vehicle];
 		#endif

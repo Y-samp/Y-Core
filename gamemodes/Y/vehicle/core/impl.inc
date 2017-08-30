@@ -14,11 +14,11 @@ hook OnGroupInit()
 	}
 }
 
-GetVehicleIDFromDBID(dbid)
+GetVehicleIDFromDBID(DBID:dbid)
 {
 	foreach (new vehicle:Vehicle) {
-		if (VehicleMeta[vehicle][id] == dbid) {
-			return dbid;
+		if (Vehicle.Meta[vehicle][id] == dbid) {
+			return _:vehicle;
 		}
 	}
 
@@ -204,11 +204,14 @@ YCMD:setvcolor(playerid, params[], help)
 	if (sscanf(params, "ddd", index, color[0], color[1])) return Text_Send(playerid, $INVALID_COMMAND_PARAMS_SETVCOLOR, YCMD:setvcolor);
 
 	new id;
-	#if defined Y_PLAYER_VEHICLE_ENABLED
+	#if defined Y_PLAYER_VEHICLE_ENABLED && !defined Y_PLAYER_REQUIRE_ACCOUNT
 		if (!(1 <= index <= Iter_Size(PlayerVehicle[playerid]))) return Text_Send(playerid, $INVALID_VEHICLE_INDEX, 1, Iter_Size(PlayerVehicle[playerid]));
 		if (!Iter_Contains(PlayerVehicle[playerid], index - 1)) return Text_Send(playerid, $INVALID_VEHICLE_INDEX_EMPTY); 
 
 		id = Player.Vehicle[playerid][index][index - 1];
+	#elseif defined Y_PLAYER_VEHICLE_ENABLED && defined Y_PLAYER_REQUIRE_ACCOUNT
+		id = GetVehicleIDFromDBID(DBID:index);
+		if (id == INVALID_VEHICLE_ID) return Text_Send(playerid, $INVALID_VEHICLE_INDEX_EMPTY);
 	#else
 		id = index;
 	#endif

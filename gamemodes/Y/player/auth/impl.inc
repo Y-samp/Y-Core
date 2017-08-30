@@ -29,6 +29,8 @@ hook OnPlayerConnect(playerid)
 		defer DelayedLogin(playerid);
 	#endif
 
+	SetSpawnInfo(playerid, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0);
+
 	return 1;
 }
 
@@ -43,9 +45,6 @@ hook OnPlayerLogin(playerid)
 
 hook OnPlayerRequestClass(playerid, classid)
 {
-	log("OPRC Called");
-	SetSpawnInfo(playerid, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0);
-
 	#if defined Y_PLAYER_REQUIRE_ACCOUNT
 		TogglePlayerSpectating(playerid, true);
 	#endif
