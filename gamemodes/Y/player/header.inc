@@ -8,8 +8,9 @@
 #if defined Y_PLAYER_REQUIRE_ACCOUNT
 	#include "login\header"
 	#include "registration\header"
-	#include "status\header"
 #endif
+
+#include "status\header"
 
 #if defined Y_PLAYER_VEHICLE_ENABLED
 	#include "vehicle\header"

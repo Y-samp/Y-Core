@@ -8,61 +8,64 @@ loadtext y_players[status];
 
 hook OnGroupInit()
 {
+	printf("GRoup is %06x", _:LoggedGroup);
 	GROUP_ADD<LoggedGroup>
 	{
 		@YCMD:stats;
 	}
 }
 
-hook OnPlayerLogin(playerid)
-{
-	inline FetchedPlayerStatus()
+#if defined Y_PLAYER_REQUIRE_ACCOUNT
+	hook OnPlayerLogin(playerid)
 	{
-		if (!cache_num_rows()) {
-			@return log("Did not find player status data");
+		inline FetchedPlayerStatus()
+		{
+			if (!cache_num_rows()) {
+				@return log("Did not find player status data");
+			}
+
+			cache_get_value_name_int(0, "vip", Player.Status[playerid][vip]);
+			cache_get_value_name_int(0, "money", Player.Status[playerid][money]);
+			
+			new admin = 0;
+			cache_get_value_name_int(0, "admin", admin);
+			Player.Status[playerid][admin] = admin;
+
+			if (admin > 0) {
+				Group_SetPlayer(AdminGroup[admin - 1], playerid, true);
+			}
+
+			new dev = 0;
+			cache_get_value_name_int(0, "developer", dev);
+			Player.Status[playerid][developer] = !!dev;
+
+			if (Player.Status[playerid][developer]) {
+				Group_SetPlayer(DeveloperGroup, playerid, true);
+			}
+
+			@return log("Loaded player %d status data", playerid);
 		}
 
-		cache_get_value_name_int(0, "vip", Player.Status[playerid][vip]);
-		cache_get_value_name_int(0, "money", Player.Status[playerid][money]);
-		
-		new admin = 0;
-		cache_get_value_name_int(0, "admin", admin);
-		Player.Status[playerid][admin] = admin;
+		new query[80];
+		mysql_format(dbhandle, query, sizeof query, "SELECT * FROM player_statuses WHERE player_id = %d LIMIT 1", _:Player.Auth[playerid][id]);
+		mysql_tquery_inline(dbhandle, query, using inline FetchedPlayerStatus);
 
-		if (admin > 0) {
-			Group_SetPlayer(AdminGroup[admin - 1], playerid, true);
-		}
+		new ip[16];
+		GetPlayerIp(playerid, ip, sizeof ip);
+		Player.Status[playerid][ip] = IPToInt(ip);
 
-		new dev = 0;
-		cache_get_value_name_int(0, "developer", dev);
-		Player.Status[playerid][developer] = !!dev;
-
-		if (Player.Status[playerid][developer]) {
-			Group_SetPlayer(DeveloperGroup, playerid, true);
-		}
-
-		@return log("Loaded player %d status data", playerid);
+		return 1;
 	}
 
-	new query[80];
-	mysql_format(dbhandle, query, sizeof query, "SELECT * FROM player_statuses WHERE player_id = %d LIMIT 1", _:Player.Auth[playerid][id]);
-	mysql_tquery_inline(dbhandle, query, using inline FetchedPlayerStatus);
+	hook OnPlayerRegister(playerid)
+	{
+		new query[128];
+		mysql_format(dbhandle, query, sizeof query, "INSERT INTO player_statuses(player_id) VALUES(%d)", _:Player.Auth[playerid][id]);
+		mysql_pquery(dbhandle, query);
 
-	new ip[16];
-	GetPlayerIp(playerid, ip, sizeof ip);
-	Player.Status[playerid][ip] = IPToInt(ip);
-
-	return 1;
-}
-
-hook OnPlayerRegister(playerid)
-{
-	new query[128];
-	mysql_format(dbhandle, query, sizeof query, "INSERT INTO player_statuses(player_id) VALUES(%d)", _:Player.Auth[playerid][id]);
-	mysql_pquery(dbhandle, query);
-
-	return 1;
-}
+		return 1;
+	}
+#endif
 
 hook OnPlayerStats(playerid)
 {

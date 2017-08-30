@@ -138,9 +138,11 @@ YCMD:setadminlevel(playerid, params[], help)
 		Text_Send(LoggedGroup, $ADMIN_LEVEL_CHANGE, Player.Auth[targetid][name], level, Player.Auth[playerid][name]);
 	}
 
-	new query[80];
-	mysql_format(dbhandle, query, sizeof query, "UPDATE player_statuses SET admin = %d WHERE player_id = %d", Player.Status[targetid][admin], _:Player.Auth[targetid][id]);
-	mysql_pquery(dbhandle, query);
+	#if defined Y_PLAYER_REQUIRE_ACCOUNT
+		new query[80];
+		mysql_format(dbhandle, query, sizeof query, "UPDATE player_statuses SET admin = %d WHERE player_id = %d", Player.Status[targetid][admin], _:Player.Auth[targetid][id]);
+		mysql_pquery(dbhandle, query);
+	#endif
 
 	return 1;
 }
