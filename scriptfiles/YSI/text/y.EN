@@ -6,3 +6,6 @@ ACTION_SUCCESS = {SUCCESS}Action performed successfully
 INVALID_LEVEL_SPECIFIED = {ERROR}Invalid level specified. {INFO}Available levels range is between %d and %d
 OK = OK
 CLOSE = Close
+BACK = Back
+INSPECT = Inspect
+SELECT = Select

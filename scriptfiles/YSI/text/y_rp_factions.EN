@@ -12,3 +12,16 @@ FACTIONS_LIST_EMPTY = No factions found
 
 INVALID_COMMAND_PARAMS_SFM = {ERROR}Invalid parameters. {INFO}Usage: /%n <factionid> <money>
 INVALID_FACTION_ID_ERROR = {ERROR}Invalid faction id
+
+FACTIONS_INSPECT_TITLE = Choose an action
+FACTIONS_INSPECT_OPTIONS = 1) Name\n2) Money\n3) Members
+
+FACTIONS_RENAME_TITLE = Rename the faction
+FACTIONS_RENAME_BODY = %s{NORMAL}Renaming faction {INFO}%s{NORMAL}. Choose a new name
+FACTIONS_RENAME_ERROR = {ERROR}Name must be between {INFO}%d{ERROR} and {INFO}%d{ERROR} characters long\n\n
+FACTIONS_RENAMED = {SUCCESS}Faction renamed to {INFO}%s
+
+FACTIONS_SET_MONEY_TITLE = Set faction money
+FACTIONS_SET_MONEY_BODY = %s{NORMAL}Setting faction {INFO}%s{NORMAL} money. Select amount
+FACTIONS_SET_MONEY_ERROR = {ERROR}Money amount must be between {INFO}%d{ERROR} and {INFO}%d{ERROR}\n\n
+FACTIONS_SET_MONEY_DONE = {SUCCESS}Faction money set to {INFO}%d
