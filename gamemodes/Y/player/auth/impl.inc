@@ -68,7 +68,7 @@ hook OnPlayerSpawn(playerid)
 
 		strcpy(Player.Auth[playerid][name], name);
 
-		mysql_format(dbhandle, query, sizeof query, "SELECT id, password, salt FROM players WHERE name = '%e'", name);
+		mysql_format(dbhandle, query, sizeof query, "SELECT id, password, salt FROM " PLAYER_TABLE " WHERE name = '%e'", name);
 
 		inline PlayerFetched()
 		{

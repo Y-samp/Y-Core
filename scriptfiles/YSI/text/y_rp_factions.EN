@@ -1,0 +1,14 @@
+[core]
+FACTIONS = Factions
+INVALID_COMMAND_PARAMS_CF = {ERROR}Invalid parameters. {INFO}Usage: /%n <owner> <budget> <name>
+FACTIONS_LIMIT_REACHED = {ERROR}Factions limit reached. Remove some factions first to continue.
+OWNER_FACTION = {NORMAL}You are now an owner of faction {INFO}%s. {NORMAL}Your budget is {SUCCESS}$%d
+NEW_FACTION = {NORMAL}A faction {INFO}%s{NORMAL} was just created by {INFO}%s{NORMAL}. The owner is {INFO}%s
+
+FACTIONS_LIST_TITLE = Factions list
+FACTIONS_LIST_HEADERS = Name%sNum members%sOwner
+FACTIONS_LIST_HEADERS_ADMIN = Name%sNum members%sOwner%sMoney
+FACTIONS_LIST_EMPTY = No factions found
+
+INVALID_COMMAND_PARAMS_SFM = {ERROR}Invalid parameters. {INFO}Usage: /%n <factionid> <money>
+INVALID_FACTION_ID_ERROR = {ERROR}Invalid faction id

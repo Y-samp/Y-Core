@@ -18,6 +18,10 @@
 		#include "vehicle\header"
 	#endif
 
+	#if defined Y_OBJECT_ENABLED
+		#include "object\header"
+	#endif
+
 	#if defined Y_MODE_RP
 		#include "RP\RP"
 	#endif
@@ -36,6 +40,10 @@
 
 	#if defined Y_VEHICLE_ENABLED
 		#include "vehicle\impl"
+	#endif
+
+	#if defined Y_OBJECT_ENABLED
+		#include "object\impl"
 	#endif
 
 	#if defined Y_MODE_RP

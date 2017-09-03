@@ -4,3 +4,5 @@ UNAUTHORIZED_ACTION = {ERROR}Unauthorized action
 CANNOT_USE_ON_SELF = {INFO}You can't use this action on yourself
 ACTION_SUCCESS = {SUCCESS}Action performed successfully
 INVALID_LEVEL_SPECIFIED = {ERROR}Invalid level specified. {INFO}Available levels range is between %d and %d
+OK = OK
+CLOSE = Close

@@ -4,6 +4,8 @@
 
 #if defined Y_DEBUG
 	#define log printf
+	#define err printf
 #else
 	log(...) {}
+	err(...) {}
 #endif

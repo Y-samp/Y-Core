@@ -25,13 +25,13 @@ public OnQueryError(errorid, const error[], const callback[], const query[], MyS
 {
 	switch(errorid) {
 		case CR_SERVER_GONE_ERROR: {
-			print("Lost connection to server");
+			err("Lost connection to server");
 		}
 		case ER_SYNTAX_ERROR: {
-			printf("Something is wrong in your syntax, query: %s",query);
+			err("Something is wrong in your syntax, query: %s",query);
 		}
 		default: {
-			printf("Other mysql error %d %s (callback %s), query %s", errorid, error, callback, query);
+			err("Other mysql error %d %s (callback %s), query %s", errorid, error, callback, query);
 		}
 	}
 	return 1;
