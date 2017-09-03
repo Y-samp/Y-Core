@@ -25,3 +25,6 @@ FACTIONS_SET_MONEY_TITLE = Set faction money
 FACTIONS_SET_MONEY_BODY = %s{NORMAL}Setting faction {INFO}%s{NORMAL} money. Select amount
 FACTIONS_SET_MONEY_ERROR = {ERROR}Money amount must be between {INFO}%d{ERROR} and {INFO}%d{ERROR}\n\n
 FACTIONS_SET_MONEY_DONE = {SUCCESS}Faction money set to {INFO}%d
+
+FACTIONS_MEMBERS_LIST_TITLE = Faction members
+FACTIONS_MEMBERS_LIST_HEADER = Name%sRank%sOnline
