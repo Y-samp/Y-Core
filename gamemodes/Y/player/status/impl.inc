@@ -23,12 +23,12 @@ hook OnPlayerLogin(playerid)
 				@return log("Did not find player %d status data", playerid);
 			}
 
-			cache_get_value_name_int(0, "vip", Player.Status[playerid][vip]);
-			cache_get_value_name_int(0, "money", Player.Status[playerid][money]);
+			cache_get_value_name_int(0, "vip", Player.Status[playerid][@vip]);
+			cache_get_value_name_int(0, "money", Player.Status[playerid][@money]);
 			
 			new admin = 0;
 			cache_get_value_name_int(0, "admin", admin);
-			Player.Status[playerid][admin] = admin;
+			Player.Status[playerid][@admin] = admin;
 
 			if (admin > 0) {
 				Group_SetPlayer(AdminGroup[admin - 1], playerid, true);
@@ -36,9 +36,9 @@ hook OnPlayerLogin(playerid)
 
 			new dev = 0;
 			cache_get_value_name_int(0, "developer", dev);
-			Player.Status[playerid][developer] = !!dev;
+			Player.Status[playerid][@developer] = !!dev;
 
-			if (Player.Status[playerid][developer]) {
+			if (Player.Status[playerid][@developer]) {
 				Group_SetPlayer(DeveloperGroup, playerid, true);
 			}
 
@@ -46,13 +46,13 @@ hook OnPlayerLogin(playerid)
 		}
 
 		new query[80];
-		mysql_format(dbhandle, query, sizeof query, "SELECT * FROM player_statuses WHERE player_id = %d LIMIT 1", _:Player.Auth[playerid][id]);
+		mysql_format(dbhandle, query, sizeof query, "SELECT * FROM player_statuses WHERE player_id = %d LIMIT 1", _:Player.Auth[playerid][@id]);
 		mysql_tquery_inline(dbhandle, query, using inline FetchedPlayerStatus);
 	#endif
 
 	new ip[16];
 	GetPlayerIp(playerid, ip, sizeof ip);
-	Player.Status[playerid][ip] = IPToInt(ip);
+	Player.Status[playerid][@ip] = IPToInt(ip);
 
 	return 1;
 }
@@ -61,7 +61,7 @@ hook OnPlayerLogin(playerid)
 	hook OnPlayerRegister(playerid)
 	{
 		new query[128];
-		mysql_format(dbhandle, query, sizeof query, "INSERT INTO player_statuses(player_id) VALUES(%d)", _:Player.Auth[playerid][id]);
+		mysql_format(dbhandle, query, sizeof query, "INSERT INTO player_statuses(player_id) VALUES(%d)", _:Player.Auth[playerid][@id]);
 		mysql_pquery(dbhandle, query);
 
 		return 1;
@@ -70,7 +70,7 @@ hook OnPlayerLogin(playerid)
 
 hook OnPlayerStats(playerid)
 {
-	Text_Send(playerid, $PLAYER_STATS, Player.Status[playerid][money], Player.Status[playerid][developer] ? "Yes" : "No", Player.Status[playerid][vip] ? "Yes" : "No", Player.Status[playerid][admin]);
+	Text_Send(playerid, $PLAYER_STATS, Player.Status[playerid][@money], Player.Status[playerid][@developer] ? "Yes" : "No", Player.Status[playerid][@vip] ? "Yes" : "No", Player.Status[playerid][@admin]);
 
 	return 1;	
 }

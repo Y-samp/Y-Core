@@ -23,8 +23,8 @@ hook OnGroupInit()
 		GetVehiclePos(vehicleid, pos[0], pos[1], pos[2]);
 		GetVehicleZAngle(vehicleid, rot);
 
-		Vehicle.Status[vehicleid][pos] = pos;
-		Vehicle.Status[vehicleid][rot] = rot;
+		Vehicle.Status[vehicleid][@pos] = pos;
+		Vehicle.Status[vehicleid][@rot] = rot;
 
 		new query[256];
 		mysql_format(
@@ -32,10 +32,10 @@ hook OnGroupInit()
 			query,
 			sizeof query,
 			"UPDATE vehicles SET X = %.2f, Y = %.2f, Z = %.2f, R = %.2f, color_1 = %d, color_2 = %d WHERE id = %d",
-			Vehicle.Status[vehicleid][pos][0], Vehicle.Status[vehicleid][pos][1], Vehicle.Status[vehicleid][pos][2],
-			Vehicle.Status[vehicleid][rot],
-			Vehicle.Status[vehicleid][color][0], Vehicle.Status[vehicleid][color][1],
-			_:Vehicle.Meta[vehicleid][id]
+			Vehicle.Status[vehicleid][@pos][0], Vehicle.Status[vehicleid][@pos][1], Vehicle.Status[vehicleid][@pos][2],
+			Vehicle.Status[vehicleid][@rot],
+			Vehicle.Status[vehicleid][@color][0], Vehicle.Status[vehicleid][@color][1],
+			_:Vehicle.Meta[vehicleid][@id]
 		);
 		mysql_tquery(dbhandle, query);
 	}

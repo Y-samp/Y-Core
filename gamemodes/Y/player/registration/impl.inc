@@ -88,18 +88,18 @@ Register(playerid, const password[])
 
 	SHA256_PassHash(peppered, salt, hash, sizeof hash);
 
-	strcpy(Player.Auth[playerid][salt], salt);
-	strcpy(Player.Auth[playerid][password], hash);
+	strcpy(Player.Auth[playerid][@salt], salt);
+	strcpy(Player.Auth[playerid][@password], hash);
 
 	new
 		query[256]
 	;
 
-	mysql_format(dbhandle, query, sizeof query, "INSERT INTO players VALUES (null, '%e', '%e', '%e', NOW())", Player.Auth[playerid][name], Player.Auth[playerid][password], Player.Auth[playerid][salt]);
+	mysql_format(dbhandle, query, sizeof query, "INSERT INTO players VALUES (null, '%e', '%e', '%e', NOW())", Player.Auth[playerid][@name], Player.Auth[playerid][@password], Player.Auth[playerid][@salt]);
 
 	inline SavePlayer()
 	{
-		Player.Auth[playerid][id] = DBID:cache_insert_id();
+		Player.Auth[playerid][@id] = DBID:cache_insert_id();
 		call OnPlayerRegister(playerid);
 	}
 

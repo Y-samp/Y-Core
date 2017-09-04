@@ -22,7 +22,7 @@ enum E_OBJECT {
 new _Object[Y_OBJECT_TOTAL][E_OBJECT];
 new Iterator:Object<Y_OBJECT_TOTAL>;
 
-#define Object[%1][%2] _Object[%1][E_OBJECT_%2]
+#define Object[%1][@%2] _Object[%1][E_OBJECT_%2]
 
 #define ALS_DO_LoadObjects<%0> %0<LoadObjects,>(none:)
 

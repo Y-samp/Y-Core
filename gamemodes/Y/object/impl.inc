@@ -11,16 +11,16 @@ hook OnGameModeInit()
 
 CreateManagedObject(index)
 {
-	Object[index][object] = CreateDynamicObject(
-		Object[index][model],
-		Object[index][pos][0],
-		Object[index][pos][1],
-		Object[index][pos][2],
-		Object[index][rot][0],
-		Object[index][rot][1],
-		Object[index][rot][2],
-		Object[index][world],
-		Object[index][int]
+	Object[index][@object] = CreateDynamicObject(
+		Object[index][@model],
+		Object[index][@pos][0],
+		Object[index][@pos][1],
+		Object[index][@pos][2],
+		Object[index][@rot][0],
+		Object[index][@rot][1],
+		Object[index][@rot][2],
+		Object[index][@world],
+		Object[index][@int]
 	);
 }
 

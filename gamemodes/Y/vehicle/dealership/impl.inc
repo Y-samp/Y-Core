@@ -195,7 +195,7 @@ DealershipEnter(playerid, E_DEALERSHIP_PLACE:index)
 	TextDrawShowForPlayer(playerid, DealershipRotateButton);
 
 	#if defined Y_PLAYER_REQUIRE_ACCOUNT
-	if (Player.Status[playerid][vip]) {
+	if (Player.Status[playerid][@vip]) {
 		TextDrawShowForPlayer(playerid, DealershipVipDiscount);
 	}
 	#endif
@@ -229,7 +229,7 @@ DealershipExit(playerid)
 	TextDrawHideForPlayer(playerid, DealershipRotateButton);
 
 	#if defined Y_PLAYER_REQUIRE_ACCOUNT
-	if (Player.Status[playerid][vip]) {
+	if (Player.Status[playerid][@vip]) {
 		TextDrawHideForPlayer(playerid, DealershipVipDiscount);
 	}
 	#endif
@@ -280,7 +280,7 @@ DealershipGetPrice(playerid)
 	new price = GetModelPrice(CurrentDealershipVehicle[E_DEALERSHIP_CAR_MODEL]);
 
 	#if defined Y_PLAYER_REQUIRE_ACCOUNT
-	if (Player.Status[playerid][vip]) {
+	if (Player.Status[playerid][@vip]) {
 		price -= floatround(price * 0.1);
 	}
 	#endif
@@ -330,23 +330,23 @@ DealershipBuyVehicle(playerid)
 	log("Vehicle bought for %d with index %d", playerid, vehicle);
 
 	#if defined Y_PLAYER_VEHICLE_ENABLED
-		Player.Vehicle[playerid][index][slot] = vehicle;
+		Player.Vehicle[playerid][slot][@index] = vehicle;
 		Iter_Add(PlayerVehicle[playerid], slot);
 	#endif
 
-	Vehicle.Status[vehicle][pos][0] = CurrentDealership[E_DEALERSHIP_VEHICLE_SPAWN][0];
-	Vehicle.Status[vehicle][pos][1] = CurrentDealership[E_DEALERSHIP_VEHICLE_SPAWN][1];
-	Vehicle.Status[vehicle][pos][2] = CurrentDealership[E_DEALERSHIP_VEHICLE_SPAWN][2];
-	Vehicle.Status[vehicle][rot] = CurrentDealership[E_DEALERSHIP_VEHICLE_SPAWN][3];
-	Vehicle.Meta[vehicle][model] = _:CurrentDealershipVehicle[E_DEALERSHIP_CAR_MODEL];
+	Vehicle.Status[vehicle][@pos][0] = CurrentDealership[E_DEALERSHIP_VEHICLE_SPAWN][0];
+	Vehicle.Status[vehicle][@pos][1] = CurrentDealership[E_DEALERSHIP_VEHICLE_SPAWN][1];
+	Vehicle.Status[vehicle][@pos][2] = CurrentDealership[E_DEALERSHIP_VEHICLE_SPAWN][2];
+	Vehicle.Status[vehicle][@rot] = CurrentDealership[E_DEALERSHIP_VEHICLE_SPAWN][3];
+	Vehicle.Meta[vehicle][@model] = CurrentDealershipVehicle[E_DEALERSHIP_CAR_MODEL];
 
 	SCM(playerid, -1, ":_______VEHICLE PURCHASED_______:");
 	SCM(playerid, -1, "REMEMBER: Leaving your vehicle in the delivery point can get your vehicle deleted by the administration without refund!");
 
 	CreateVehicle(
-		Vehicle.Meta[vehicle][model],
-		Vehicle.Status[vehicle][pos][0], Vehicle.Status[vehicle][pos][1], Vehicle.Status[vehicle][pos][2],
-		Vehicle.Status[vehicle][rot],
+		Vehicle.Meta[vehicle][@model],
+		Vehicle.Status[vehicle][@pos][0], Vehicle.Status[vehicle][@pos][1], Vehicle.Status[vehicle][@pos][2],
+		Vehicle.Status[vehicle][@rot],
 		1, 1,	-1
 	);
 
@@ -376,7 +376,7 @@ YCMD:gotodealership(playerid, params[], help)
 	strcpy(list, "1\tSports\n2\tLowriders\n3\tSaloons C&S\n4\tSaloons Pick and Go\n5\tOff Road\n6\tAircrafts\n7\tBoats\n8\tTrucks\n9\tMotorbikes");
 
 	#if defined Y_PLAYER_REQUIRE_ACCOUNT
-	if (Player.Status[playerid][vip]) {
+	if (Player.Status[playerid][@vip]) {
 		strcat(list, "\n10\tVIP");
 	}
 	#endif

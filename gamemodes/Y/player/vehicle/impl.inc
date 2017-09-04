@@ -20,30 +20,30 @@ loadtext y_vehicles[status];
 				}
 
 				new vid = GetFreeVehicleSlot();
-				Player.Vehicle[playerid][index][idx] = vid;
+				Player.Vehicle[playerid][idx][@index] = vid;
 				Iter_Add(PlayerVehicle[playerid], idx);
 
-				cache_get_value_name_int(row, "id", _:Vehicle.Meta[vid][id]);
-				cache_get_value_name_int(row, "model", Vehicle.Meta[vid][model]);
-				cache_get_value_name_float(row, "X", Vehicle.Status[vid][pos][0]);
-				cache_get_value_name_float(row, "Y", Vehicle.Status[vid][pos][1]);
-				cache_get_value_name_float(row, "Z", Vehicle.Status[vid][pos][2]);
-				cache_get_value_name_float(row, "R", Vehicle.Status[vid][rot]);
-				cache_get_value_name_int(row, "color_1", Vehicle.Status[vid][color][0]);
-				cache_get_value_name_int(row, "color_2", Vehicle.Status[vid][color][1]);
+				cache_get_value_name_int(row, "id", _:Vehicle.Meta[vid][@id]);
+				cache_get_value_name_int(row, "model", Vehicle.Meta[vid][@model]);
+				cache_get_value_name_float(row, "X", Vehicle.Status[vid][@pos][0]);
+				cache_get_value_name_float(row, "Y", Vehicle.Status[vid][@pos][1]);
+				cache_get_value_name_float(row, "Z", Vehicle.Status[vid][@pos][2]);
+				cache_get_value_name_float(row, "R", Vehicle.Status[vid][@rot]);
+				cache_get_value_name_int(row, "color_1", Vehicle.Status[vid][@color][0]);
+				cache_get_value_name_int(row, "color_2", Vehicle.Status[vid][@color][1]);
 
 				CreateVehicle(
-					Vehicle.Meta[vid][model],
-					Vehicle.Status[vid][pos][0],
-					Vehicle.Status[vid][pos][1],
-					Vehicle.Status[vid][pos][2],
-					Vehicle.Status[vid][rot],
+					Vehicle.Meta[vid][@model],
+					Vehicle.Status[vid][@pos][0],
+					Vehicle.Status[vid][@pos][1],
+					Vehicle.Status[vid][@pos][2],
+					Vehicle.Status[vid][@rot],
 					-1,
 					-1,
 					-1
 				);
 
-				log("Loaded player vehicle in slot %d (dbid %d)", idx, _:Vehicle.Meta[vid][id]);
+				log("Loaded player vehicle in slot %d (dbid %d)", idx, _:Vehicle.Meta[vid][@id]);
 			}
 		}
 
@@ -51,7 +51,7 @@ loadtext y_vehicles[status];
 			query[128]
 		;
 
-		mysql_format(dbhandle, query, sizeof query, "SELECT * FROM vehicles WHERE player_id = %d", _:Player.Auth[playerid][id]);	
+		mysql_format(dbhandle, query, sizeof query, "SELECT * FROM vehicles WHERE player_id = %d", _:Player.Auth[playerid][@id]);	
 		mysql_tquery_inline(dbhandle, query, using inline FetchCars);
 
 		return 1;
@@ -61,7 +61,7 @@ loadtext y_vehicles[status];
 hook OnPlayerDisconnect(playerid, reason)
 {
 	foreach (new vehicle:PlayerVehicle[playerid]) {
-		DestroyVehicle(Player.Vehicle[playerid][index][vehicle]);
+		DestroyVehicle(Player.Vehicle[playerid][vehicle][@index]);
 	}
 
 	Iter_Clear(PlayerVehicle[playerid]);
@@ -83,9 +83,9 @@ hook OnPlayerStats(playerid)
 		;
 
 		#if defined Y_PLAYER_REQUIRE_ACCOUNT
-			id = _:Vehicle.Meta[Player.Vehicle[playerid][index][vehicle]][id];
+			id = _:Vehicle.Meta[Player.Vehicle[playerid][vehicle][@index]][@id];
 		#else
-			id = Player.Vehicle[playerid][index][vehicle];
+			id = Player.Vehicle[playerid][index][@vehicle];
 		#endif
 
 		Text_Format_Client(str, sizeof str, Langs_GetPlayerLanguage(playerid), $VEHICLE_STATS, i, id);
@@ -105,7 +105,7 @@ hook OnPlayerStats(playerid)
 	{
 		inline SavedVehicle()
 		{
-			Vehicle.Meta[vehicleid][id] = DBID:cache_insert_id();
+			Vehicle.Meta[vehicleid][@id] = DBID:cache_insert_id();
 		}
 
 		new query[128];
@@ -114,9 +114,9 @@ hook OnPlayerStats(playerid)
 			query,
 			sizeof query,
 			"INSERT INTO vehicles VALUES (null, %d, %d, %.2f, %.2f, %.2f, %.2f, %d, %d)",
-			_:Player.Auth[playerid][id],
-			Vehicle.Meta[vehicleid][model], Vehicle.Status[vehicleid][pos][0], Vehicle.Status[vehicleid][pos][1], Vehicle.Status[vehicleid][pos][2], 
-			Vehicle.Status[vehicleid][rot], Vehicle.Status[vehicleid][color][0], Vehicle.Status[vehicleid][color][1]
+			_:Player.Auth[playerid][@id],
+			Vehicle.Meta[vehicleid][@model], Vehicle.Status[vehicleid][@pos][0], Vehicle.Status[vehicleid][@pos][1], Vehicle.Status[vehicleid][@pos][2], 
+			Vehicle.Status[vehicleid][@rot], Vehicle.Status[vehicleid][@color][0], Vehicle.Status[vehicleid][@color][1]
 		);
 		mysql_tquery_inline(dbhandle, query, using inline SavedVehicle);
 

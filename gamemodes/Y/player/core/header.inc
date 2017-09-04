@@ -2,7 +2,11 @@
 	#undef _inc_header
 #endif
 
-#define Player.%0[%1][%2] Player%0[%1][E_PLAYER_%0_%2]
+#define Player.%0[%1] (_:@vb:@va:Player@%0[%1]
+#define @va:Player@%0[%1][@%2] Player%0[%1])[E_PLAYER_%0_%2]
+#define @vb:@va:Player@%0[%1][%2][@%3] Player%0[%1])[%2][E_PLAYER_%0_%3]
+
+// static stock @vb:foo;
 
 #define ALS_DO_PlayerEnter<%0> %0<PlayerEnter,i>(end:playerid)
 

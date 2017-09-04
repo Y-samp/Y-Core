@@ -48,7 +48,7 @@ timer RetrieveRconPlayer[1000](string:ip[])
 	new ip2 = IPToInt(ip);
 
 	foreach(new player:Player) {
-		if (Player.Status[player][ip] == ip2 && IsPlayerAdmin(player)) {
+		if (Player.Status[player][@ip] == ip2 && IsPlayerAdmin(player)) {
 			CallRemoteFunction("OnPlayerRconLogin", "i", player);
 
 			return 1;
@@ -72,8 +72,8 @@ CreateAdminGroups()
 
 ClearAdminLevel(playerid)
 {
-	if (Player.Status[playerid][admin] > 0) {
-		Group_SetPlayer(AdminGroup[Player.Status[playerid][admin] - 1], playerid, false);	
+	if (Player.Status[playerid][@admin] > 0) {
+		Group_SetPlayer(AdminGroup[Player.Status[playerid][@admin] - 1], playerid, false);	
 	}
 }
 
@@ -92,7 +92,7 @@ SetAdminLevel(playerid, level, bool:force = false)
 	}
 
 	Group_SetPlayer(AdminGroup[level - 1], playerid, true);
-	Player.Status[playerid][admin] = level;
+	Player.Status[playerid][@admin] = level;
 
 	return 0;
 }
@@ -123,7 +123,7 @@ YCMD:setadminlevel(playerid, params[], help)
 	if (sscanf(params, "udD(0)", targetid, level, announce)) return Text_Send(playerid, $INVALID_COMMAND_PARAMS_SAL, YCMD:sal);
 	if (targetid == playerid) return Text_Send(playerid, $CANNOT_USE_ON_SELF);
 	if (!IsPlayerConnected(targetid)) return Text_Send(playerid, $INVALID_PLAYER_SPECIFIED);
-	if (Player.Status[playerid][admin] <= Player.Status[targetid][admin]) return Text_Send(playerid, $UNAUTHORIZED_ACTION);
+	if (Player.Status[playerid][@admin] <= Player.Status[targetid][@admin]) return Text_Send(playerid, $UNAUTHORIZED_ACTION);
 
 	new sal = SetAdminLevel(targetid, level);
 	if(sal) {
@@ -132,15 +132,15 @@ YCMD:setadminlevel(playerid, params[], help)
 	}
 
 	Text_Send(playerid, $ACTION_SUCCESS);
-	Text_Send(AdminGroup[0], $ADMIN_LEVEL_CHANGE, Player.Auth[targetid][name], level, Player.Auth[playerid][name]);
+	Text_Send(AdminGroup[0], $ADMIN_LEVEL_CHANGE, Player.Auth[targetid][@name], level, Player.Auth[playerid][@name]);
 	
 	if (announce) {
-		Text_Send(LoggedGroup, $ADMIN_LEVEL_CHANGE, Player.Auth[targetid][name], level, Player.Auth[playerid][name]);
+		Text_Send(LoggedGroup, $ADMIN_LEVEL_CHANGE, Player.Auth[targetid][@name], level, Player.Auth[playerid][@name]);
 	}
 
 	#if defined Y_PLAYER_REQUIRE_ACCOUNT
 		new query[80];
-		mysql_format(dbhandle, query, sizeof query, "UPDATE player_statuses SET admin = %d WHERE player_id = %d", Player.Status[targetid][admin], _:Player.Auth[targetid][id]);
+		mysql_format(dbhandle, query, sizeof query, "UPDATE player_statuses SET admin = %d WHERE player_id = %d", Player.Status[targetid][@admin], _:Player.Auth[targetid][@id]);
 		mysql_pquery(dbhandle, query);
 	#endif
 

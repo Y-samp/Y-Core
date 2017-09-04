@@ -86,9 +86,9 @@ CheckUserPassword(playerid, const password[])
 	strcpy(peppered, Y_PLAYER_PASSWORD_PEPPER);
 	strcat(peppered, password);
 
-	SHA256_PassHash(peppered, Player.Auth[playerid][salt], hash, sizeof hash);
+	SHA256_PassHash(peppered, Player.Auth[playerid][@salt], hash, sizeof hash);
 
-	if (!strcmp(hash, Player.Auth[playerid][password])) return true;
+	if (!strcmp(hash, Player.Auth[playerid][@password])) return true;
 
 	return false;
 }

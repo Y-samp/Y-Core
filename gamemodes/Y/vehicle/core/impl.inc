@@ -17,7 +17,7 @@ hook OnGroupInit()
 GetVehicleIDFromDBID(DBID:dbid)
 {
 	foreach (new vehicle:Vehicle) {
-		if (Vehicle.Meta[vehicle][id] == dbid) {
+		if (DBID:Vehicle.Meta[vehicle][@id] == dbid) {
 			return _:vehicle;
 		}
 	}
@@ -208,7 +208,7 @@ YCMD:setvcolor(playerid, params[], help)
 		if (!(1 <= index <= Iter_Size(PlayerVehicle[playerid]))) return Text_Send(playerid, $INVALID_VEHICLE_INDEX, 1, Iter_Size(PlayerVehicle[playerid]));
 		if (!Iter_Contains(PlayerVehicle[playerid], index - 1)) return Text_Send(playerid, $INVALID_VEHICLE_INDEX_EMPTY); 
 
-		id = Player.Vehicle[playerid][index][index - 1];
+		id = Player.Vehicle[playerid][index][@index - 1];
 	#elseif defined Y_PLAYER_VEHICLE_ENABLED && defined Y_PLAYER_REQUIRE_ACCOUNT
 		id = GetVehicleIDFromDBID(DBID:index);
 		if (id == INVALID_VEHICLE_ID) return Text_Send(playerid, $INVALID_VEHICLE_INDEX_EMPTY);

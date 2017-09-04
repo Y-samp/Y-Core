@@ -66,16 +66,16 @@ hook OnPlayerSpawn(playerid)
 		new name[MAX_PLAYER_NAME + 1];
 		GetPlayerName(playerid, name, sizeof name);
 
-		strcpy(Player.Auth[playerid][name], name);
+		strcpy(Player.Auth[playerid][@name], name);
 
 		mysql_format(dbhandle, query, sizeof query, "SELECT id, password, salt FROM " PLAYER_TABLE " WHERE name = '%e'", name);
 
 		inline PlayerFetched()
 		{
 			if (cache_num_rows()) {
-				cache_get_value_name_int(0, "id", _:Player.Auth[playerid][id]);
-				cache_get_value_name(0, "password", Player.Auth[playerid][password]);
-				cache_get_value_name(0, "salt", Player.Auth[playerid][salt]);
+				cache_get_value_name_int(0, "id", _:Player.Auth[playerid][@id]);
+				cache_get_value_name(0, "password", Player.Auth[playerid][@password]);
+				cache_get_value_name(0, "salt", Player.Auth[playerid][@salt]);
 				@return ShowLoginDialog(playerid);
 			}
 
