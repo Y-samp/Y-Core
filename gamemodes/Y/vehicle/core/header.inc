@@ -9,10 +9,7 @@
 #include <YSI\y_commands>
 #include <YSI\y_text>
 
-
-#define Vehicle.%0[%1] (_:@vd:@vc:Vehicle@%0[%1]
-#define @vc:Vehicle@%0[%1][@%2] Vehicle%0[%1])[E_VEHICLE_%0_%2]
-#define @vd:@vc:Vehicle@%0[%1][%2][@%3] Vehicle%0[%1])[%2][E_VEHICLE_%0_%3]
+#define Vehicle. OO_TYPE(VEHICLE,Vehicle)
 
 // Vehicle information that does not change
 enum E_VEHICLE_META {
