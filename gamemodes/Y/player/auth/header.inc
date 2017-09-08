@@ -19,6 +19,6 @@ new
 	Group:LoggedGroup
 ;
 
-#define IsLoggedIn(%0) (Group_GetPlayer(LoggedGroup, %0))
+#define IsLoggedIn(%0) Group_GetPlayer(LoggedGroup, %0)
 
 #define PLAYER_TABLE "players"

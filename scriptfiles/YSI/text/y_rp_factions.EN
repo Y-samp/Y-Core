@@ -9,12 +9,13 @@ FACTIONS_LIST_TITLE = Factions list
 FACTIONS_LIST_HEADERS = Name%sNum members%sOwner
 FACTIONS_LIST_HEADERS_ADMIN = Name%sNum members%sOwner%sMoney
 FACTIONS_LIST_EMPTY = No factions found
+FACTIONS_LIST_NOT_YOURS = {ERROR}You can't inspect not your faction
 
 INVALID_COMMAND_PARAMS_SFM = {ERROR}Invalid parameters. {INFO}Usage: /%n <factionid> <money>
 INVALID_FACTION_ID_ERROR = {ERROR}Invalid faction id
 
 FACTIONS_INSPECT_TITLE = Choose an action
-FACTIONS_INSPECT_OPTIONS = 1) Name\n2) Money\n3) Members
+FACTIONS_INSPECT_OPTIONS = Name\nMoney\nMembers
 
 FACTIONS_RENAME_TITLE = Rename the faction
 FACTIONS_RENAME_BODY = %s{NORMAL}Renaming faction {INFO}%s{NORMAL}. Choose a new name

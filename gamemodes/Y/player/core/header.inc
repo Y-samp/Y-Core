@@ -12,6 +12,6 @@ new
 	Group:DeveloperGroup
 ;
 
-#define IsDeveloper(%0) (Group_GetPlayer(DeveloperGroup, %0))
+#define IsDeveloper(%0) Group_GetPlayer(DeveloperGroup, %0)
 
 #define ALS_DO_PlayerStats<%0> %0<PlayerStats,i>(end:playerid)
