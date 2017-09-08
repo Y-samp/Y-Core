@@ -28,3 +28,26 @@ FACTIONS_SET_MONEY_DONE = {SUCCESS}Faction money set to {INFO}%d
 
 FACTIONS_MEMBERS_LIST_TITLE = Faction members
 FACTIONS_MEMBERS_LIST_HEADER = Name%sRank%sOnline
+FACTIONS_MEMBERS_LIST_ADD = Add a new member
+
+FACTIONS_MEMBERS_ADD_TITLE = Add a new member
+FACTIONS_MEMBERS_ADD_BODY = %s{NORMAL}Please input the new member {INFO}id{NORMAL} or {INFO}name{NORMAL} (if online), or {INFO}name{NORMAL} if offline.
+FACTIONS_MEMBERS_ADD_FULL = {ERROR}No more empty member slots in this faction
+FACTIONS_MEMBERS_ADD_ERROR_PLAYER = {ERROR}Specified player does not exist\n\n
+FACTIONS_MEMBERS_ADD_ERROR_ALREADY_ADDED = {ERROR}This player already is in this faction\n\n
+FACTIONS_MEMBERS_ADDED = {SUCCESS}You have added player {INFO}%s{SUCCESS} to faction {INFO}%s
+FACTIONS_MEMBERS_ADDED_YOU = {NORMAL}Player {INFO}%s {NORMAL}added you to faction {INFO}%s
+
+FACTION_INSPECT_MEMBER_TITLE = Inspect member
+FACTION_INSPECT_MEMBER_BODY = Change player rank\nRemove player from faction
+
+FACTION_INSPECT_MEMBER_REMOVE_TITLE = Do you really want to remove this player?
+FACTION_INSPECT_MEMBER_REMOVE_BODY = {NORMAL}Confirm that you want to remove player {INFO}%s
+FACTION_INSPECT_MEMBER_REMOVED = {NORMAL}You removed player {INFO}%s {NORMAL}from faction {INFO}%s
+FACTION_INSPECT_MEMBER_REMOVED_YOU = {NORMAL}You have been removed from faction {INFO}%s {NORMAL}by {INFO}%s
+
+FACTION_INSPECT_MEMBER_CHANGE_RANK_TITLE = Change player faction rank
+FACTION_INSPECT_MEMBER_CHANGE_RANK_INVALID = {ERROR}Rank is not in the correct range\n\n
+FACTION_INSPECT_MEMBER_CHANGE_RANK_BODY = %s{NORMAL}Select a rank for player {INFO}%s{NORMAL} between {ERROR}%d{NORMAL} and {ERROR}%d
+FACTION_MEMBER_CHANGED_RANK = {NORMAL}You have changed {INFO}%s's{NORMAL} rank to {INFO}%d 
+FACTION_MEMBER_CHANGED_RANK_YOU = {INFO}%s{NORMAL} changed your rank to {INFO}%d 

@@ -5,6 +5,8 @@
 #include <a_mysql>
 #include <a_mysql_yinline>
 
+#define INVALID_DB_ID DBID:0
+
 static stock DBID:__DBID__;
 
 new MySQL:dbhandle;

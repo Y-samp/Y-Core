@@ -4,6 +4,8 @@
 
 #include <YSI\y_timers>
 
+#define MAX_OBJECT_NAME 32
+
 new
 	TotalObjects = 0,
 	LoadedObjects = 0

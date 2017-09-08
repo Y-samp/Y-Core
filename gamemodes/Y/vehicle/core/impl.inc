@@ -17,7 +17,7 @@ hook OnGroupInit()
 GetVehicleIDFromDBID(DBID:dbid)
 {
 	foreach (new vehicle:Vehicle) {
-		if (DBID:Vehicle.Meta[vehicle][@id] == dbid) {
+		if (Vehicle.Meta[vehicle][@id] == dbid) {
 			return _:vehicle;
 		}
 	}

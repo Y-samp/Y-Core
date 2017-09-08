@@ -59,6 +59,17 @@ hook OnPlayerSpawn(playerid)
 	return 1;
 }
 
+GetPlayerIndexFromDBID(DBID:dbid)
+{
+	foreach (new player:Player) {
+		if (Player.Auth[player][@id] == dbid) {
+			return _:player;
+		}
+	}
+
+	return INVALID_PLAYER_ID;
+}
+
 #if defined Y_PLAYER_REQUIRE_ACCOUNT
 	FetchPlayer(playerid)
 	{
