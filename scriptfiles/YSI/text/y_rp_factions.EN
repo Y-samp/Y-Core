@@ -4,6 +4,10 @@ INVALID_COMMAND_PARAMS_CF = {ERROR}Invalid parameters. {INFO}Usage: /%n <owner> 
 FACTIONS_LIMIT_REACHED = {ERROR}Factions limit reached. Remove some factions first to continue.
 OWNER_FACTION = {NORMAL}You are now an owner of faction {INFO}%s. {NORMAL}Your budget is {SUCCESS}$%d
 NEW_FACTION = {NORMAL}A faction {INFO}%s{NORMAL} was just created by {INFO}%s{NORMAL}. The owner is {INFO}%s
+NOT_IN_ANY_FACTION = {ERROR}You are not in any faction
+
+FACTION_GROUP_CHAT = %s%s
+INVALID_COMMAND_PARAMS_F = {ERROR}Invalid parameters. {INFO}Usage: /%n <message>
 
 FACTIONS_LIST_TITLE = Factions list
 FACTIONS_LIST_HEADERS = Name%sNum members%sOwner
