@@ -102,7 +102,7 @@ bool:IsAdminLevel(playerid, level)
 	if (IsPlayerAdmin(playerid)) {
 		return true;
 	}
-	printf("%d %d %d", playerid, level, Group_GetPlayer(AdminGroup[level - 1], playerid));
+
 	if (1 <= level <= Y_PLAYER_ADMIN_MAX_LEVEL) {
 		return Group_GetPlayer(AdminGroup[level - 1], playerid);
 	}

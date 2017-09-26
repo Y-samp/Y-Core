@@ -6,7 +6,6 @@ OWNER_FACTION = {NORMAL}You are now an owner of faction {INFO}%s. {NORMAL}Your b
 NEW_FACTION = {NORMAL}A faction {INFO}%s{NORMAL} was just created by {INFO}%s{NORMAL}. The owner is {INFO}%s
 NOT_IN_ANY_FACTION = {ERROR}You are not in any faction
 
-FACTION_GROUP_CHAT = %s%s
 INVALID_COMMAND_PARAMS_F = {ERROR}Invalid parameters. {INFO}Usage: /%n <message>
 
 FACTIONS_LIST_TITLE = Factions list
@@ -39,6 +38,7 @@ FACTIONS_MEMBERS_ADD_TITLE = Add a new member
 FACTIONS_MEMBERS_ADD_BODY = %s{NORMAL}Please input the new member {INFO}id{NORMAL} or {INFO}name{NORMAL} (if online), or {INFO}name{NORMAL} if offline.
 FACTIONS_MEMBERS_ADD_FULL = {ERROR}No more empty member slots in this faction
 FACTIONS_MEMBERS_ADD_ERROR_PLAYER = {ERROR}Specified player does not exist\n\n
+FACTIONS_MEMBERS_ADD_ERROR_ALREADY_IN_FACTION = {ERROR}This player already is in some faction\n\n
 FACTIONS_MEMBERS_ADD_ERROR_ALREADY_ADDED = {ERROR}This player already is in this faction\n\n
 FACTIONS_MEMBERS_ADDED = {SUCCESS}You have added player {INFO}%s{SUCCESS} to faction {INFO}%s
 FACTIONS_MEMBERS_ADDED_YOU = {NORMAL}Player {INFO}%s {NORMAL}added you to faction {INFO}%s

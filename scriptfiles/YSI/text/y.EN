@@ -9,3 +9,4 @@ CLOSE = Close
 BACK = Back
 INSPECT = Inspect
 SELECT = Select
+INTERNAL_ERROR = {ERROR}Internal server error
