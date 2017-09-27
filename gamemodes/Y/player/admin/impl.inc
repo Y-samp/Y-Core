@@ -64,6 +64,7 @@ CreateAdminGroups()
 		new name[32];
 		format(name, sizeof name, "Admin level %d", i + 1);
 		AdminGroup[i] = Group_Create(name);
+
 		if (i > 0) {
 			Group_AddChild(AdminGroup[i], AdminGroup[i - 1]);
 		}

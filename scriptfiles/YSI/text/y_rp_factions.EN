@@ -18,7 +18,7 @@ INVALID_COMMAND_PARAMS_SFM = {ERROR}Invalid parameters. {INFO}Usage: /%n <factio
 INVALID_FACTION_ID_ERROR = {ERROR}Invalid faction id
 
 FACTIONS_INSPECT_TITLE = Choose an action
-FACTIONS_INSPECT_OPTIONS = Name\nMoney\nMembers
+FACTIONS_INSPECT_OPTIONS = Name\nMoney\nMembers\nRanks\nColour
 
 FACTIONS_RENAME_TITLE = Rename the faction
 FACTIONS_RENAME_BODY = %s{NORMAL}Renaming faction {INFO}%s{NORMAL}. Choose a new name
@@ -55,4 +55,18 @@ FACTION_INSPECT_MEMBER_CHANGE_RANK_TITLE = Change player faction rank
 FACTION_INSPECT_MEMBER_CHANGE_RANK_INVALID = {ERROR}Rank is not in the correct range\n\n
 FACTION_INSPECT_MEMBER_CHANGE_RANK_BODY = %s{NORMAL}Select a rank for player {INFO}%s{NORMAL} between {ERROR}%d{NORMAL} and {ERROR}%d
 FACTION_MEMBER_CHANGED_RANK = {NORMAL}You have changed {INFO}%s's{NORMAL} rank to {INFO}%d 
-FACTION_MEMBER_CHANGED_RANK_YOU = {INFO}%s{NORMAL} changed your rank to {INFO}%d 
+FACTION_MEMBER_CHANGED_RANK_YOU = {INFO}%s{NORMAL} changed your rank to {INFO}%d
+
+FACTIONS_RANKS_TITLE = Manage faction ranks
+
+FACTIONS_RANK_INSPECT_TITLE = Manage faction rank 
+FACTIONS_RANK_INSPECT_OPTIONS = Change name
+
+FACTIONS_RANK_CHANGE_NAME_TITLE = Change rank name
+FACTIONS_RANK_CHANGE_NAME_BODY = %s{NORMAL}Select the new name for rank {INFO}%s
+FACTIONS_RANK_CHANGE_NAME_ERROR_EMPTY = {ERROR}Rank name cannot be empty\n\n
+FACTIONS_RANK_CHANGE_NAME_ERROR_LONG = {ERROR}Rank name can be at most {INFO}%d{ERROR} characters long\n\n
+
+FACTIONS_RANK_CHANGEED_NAME = {SUCCESS}Changed rank name to {INFO}%s
+
+FACTIONS_COLOURS_TITLE = Change faction colours
