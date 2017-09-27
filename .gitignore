@@ -21,5 +21,6 @@ scriptfiles/YSI/new_mode.PL
 scriptfiles/YSI/new_mode_format.YSI
 
 !README.md
+!CREDITS.md
 
 gamemodes/test.pwn

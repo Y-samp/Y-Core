@@ -6,33 +6,27 @@ This is an YSI-focused gamemode. It is extended by projects such as Y RP, but ca
 
 ### Player data
 
-For convinience, a macro in the following format was created:
+For convinience, a macro was created to keep namespace clean and still allow easy access to data.
+Usage is simple and visible throught the project:
+
 ```pawn
-#define Player.%0[%1][%2] Player%0[%1][E_PLAYER_%0_%2]
+Player.RP[playerid][@name]
 ```
 
-This means, if you want to add a new user data category, you will have to adhere to the following naming convetion:
+This means, if you want to add a new data category, you will have to adhere to the following naming convetion:
 
 ```pawn
-enum E_PLAYER_CATEGORY {
-	E_PLAYER_Category_id,
-	E_PLAYER_Category_property,
-	E_PLAYER_Category_property
+#define Category. OO_TYPE(CATEGORY,Category)
+
+enum E_CATEGORY_SUBCATEGORY {
+	E_CATEGORY_Subcategory_id,
+	E_CATEGORY_Subcategory_property
 }
 
-new PlayerCategory[MAX_PLAYERS][E_PLAYER_CATEGORY][OPTIONAL_DIMENSION];
+new CategorySubcategory[MAX_PLAYERS][OPTIONAL_DIMENSION][E_PLAYER_CATEGORY];
 
 // Accesing
-new foo = Player.Category[playerid][property][SOME_INDEX];
-```
-
-As you have noticed, the optional dimension has to be placed after enumerator index. This is due to PAWN preprocessor limitations. So, for example, definiting user vehicles has to look like this:
-
-```pawn
-new PlayerVehicle[MAX_PLAYERS][E_PLAYER_VEHICLE][MAX_VEHICLES_PER_PLAYER];
-
-// Accessing
-new model = Player.Vehicle[playerid][model][vehicleIndex];
+new foo = Category.Subcategory[playerid][SOME_INDEX][@property];
 ```
 
 ### Coding style
