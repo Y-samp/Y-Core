@@ -36,3 +36,25 @@ public OnQueryError(errorid, const error[], const callback[], const query[], MyS
 	}
 	return 1;
 }
+
+FadeToWhite(colour, Float:percent)
+{
+	if (percent <= 0.0) {
+		return colour;
+	}
+
+	if (percent >= 1.0) {
+		return 0xFFFFFF;
+	}
+
+	new
+		r = (colour >> 16) & 0xFF,
+		g = (colour >> 8) & 0xFF,
+		b = colour & 0xFF,
+		dr = floatround((0xFF - r) * percent),
+		dg = floatround((0xFF - g) * percent),
+		db = floatround((0xFF - b) * percent)
+	;
+
+	return ((r + dr) << 16) + ((g + dg) << 8) + (b + db);
+}
